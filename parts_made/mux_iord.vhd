@@ -1,12 +1,13 @@
-module mux_iord(input wire [2:0] sel,
-                input wire [31:0] PC,
-                input wire [31:0] RES,
-                input wire [31:0] ALUOut,
-                input wire [31:0] Excpt,
-                input wire [31:0] Reg_A,
-                input wire [31:0] Reg_B,
-                output reg [31:0] addr
-                );
+module mux_iord(
+  input wire [2:0] sel,
+  input wire [31:0] PC,
+  input wire [31:0] RES,
+  input wire [31:0] ALUOut,
+  input wire [31:0] Excpt,
+  input wire [31:0] Reg_A,
+  input wire [31:0] Reg_B,
+  output reg [31:0] addr
+);
   
   always@(*) begin
     case (sel)

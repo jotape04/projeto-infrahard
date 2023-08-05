@@ -1,8 +1,10 @@
-module mux_ulaB(input wire [1:0] sel,
-                input wire [31:0] Reg_B,
-                input wire [31:0] sign_extend,
-                input wire [31:0] sign_extend_shift_left,
-                output wire [31:0] Scr_B);
+module mux_ulaB(
+    input wire [1:0] sel,
+    input wire [31:0] Reg_B,
+    input wire [31:0] sign_extend,
+    input wire [31:0] sign_extend_shift_left,
+    output wire [31:0] Scr_B
+);
 
     always@(*) begin
         case (sel)

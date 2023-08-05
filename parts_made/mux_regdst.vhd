@@ -1,8 +1,9 @@
-module mux_regdst(input wire [1:0] sel,
-                  input wire [4:0] instruction_20_16,
-                  input wire [4:0] instruction_15_11,
-                  output reg [4:0] WriteReg
-                 );
+module mux_regdst(
+  input wire [1:0] sel,
+  input wire [4:0] instruction_20_16,
+  input wire [4:0] instruction_15_11,
+  output reg [4:0] WriteReg
+);
   
   always@(*) begin
     case (sel)
