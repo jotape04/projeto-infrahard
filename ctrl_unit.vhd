@@ -23,6 +23,7 @@ module ctrl_unit(
     output reg ALUSrcB,
     output reg PCSource
     output reg IorD,
+    output reg DataSrc,
 
     output reg reset_out
 );
@@ -59,6 +60,7 @@ module ctrl_unit(
                 ALUSrcB = 2'b00;
                 PCSource = 3'b000;
                 IorD = 3'b000;
+                DataSrc = 4'b0000;
 
                 reset_out = 1'b1;
                 COUNTER = 3'b000;
@@ -77,6 +79,7 @@ module ctrl_unit(
                 ALUSrcB = 2'b00;
                 PCSource = 3'b000;
                 IorD = 3'b000;
+                DataSrc = 4'b0000;
 
                 reset_out = 1'b0;
                 COUNTER = 3'b000;
@@ -97,6 +100,7 @@ module ctrl_unit(
                         ALUSrcB = 2'b01;
                         PCSource = 3'b000;
                         IorD = 3'b000;
+                        DataSrc = 4'b0000;
 
                         reset_out = 1'b0;
                         COUNTER = COUNTER + 1;
@@ -114,6 +118,7 @@ module ctrl_unit(
                         ALUSrcB = 2'b01;
                         PCSource = 3'b000;
                         IorD = 3'b000;
+                        DataSrc = 4'b0000;
 
                         reset_out = 1'b0;
                         COUNTER = COUNTER + 1;
@@ -131,6 +136,7 @@ module ctrl_unit(
                         ALUSrcB = 2'b00;
                         PCSource = 3'b000;
                         IorD = 3'b000;
+                        DataSrc = 4'b0000;
 
                         reset_out = 1'b0;
                         COUNTER = COUNTER + 1;
@@ -163,6 +169,7 @@ module ctrl_unit(
                         ALUSrcB = 2'b00;
                         PCSource = 3'b000;
                         IorD = 3'b000;
+                        DataSrc = 4'b0000;
 
                         reset_out = 1'b0;
                         COUNTER = 3'b000;
@@ -180,6 +187,7 @@ module ctrl_unit(
                     ALUSrcB = 2'b00;
                     PCSource = 3'b000;
                     IorD = 3'b000;
+                    DataSrc = 4'b0000;
 
                     reset_out = 1'b0;
                     COUNTER = COUNTER + 1;
@@ -201,6 +209,7 @@ module ctrl_unit(
                     ALUSrcB = 2'b10;
                     PCSource = 3'b000;
                     IorD = 3'b000;
+                    DataSrc = 4'b0000;
 
                     reset_out = 1'b0;
                     COUNTER = COUNTER + 1;
@@ -222,6 +231,7 @@ module ctrl_unit(
                     ALUSrcB = 2'b00;
                     PCSource = 3'b000;
                     IorD = 3'b000;
+                    DataSrc = 4'b0000;
 
                     reset_out = 1'b1;
                     COUNTER = 3'b000;

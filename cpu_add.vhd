@@ -23,6 +23,7 @@ module cpu_add(
     wire [1:0]ALUSrcB;
     wire [2:0] ALUCtrl;
     wire [2:0]PCSource;
+    wire [3:0]DataSrc;
 
     // Data Wires
     wire [31:0] PC_in;
@@ -63,6 +64,8 @@ module cpu_add(
     wire [31:0] Seila2;
     wire [31:0] EPC;
 
+
+
     mux_iord MuxIord_(
         IorD,
         PC_out,
@@ -79,6 +82,12 @@ module cpu_add(
         RT,
         OFFSET,
         Write_Reg
+    );
+
+    mux_datasrc MuxDataSrc_(
+        DataSrc,
+        RES,
+        Write_data_Reg,
     );
 
     mux_ulaA MuxA_(
@@ -119,7 +128,7 @@ module cpu_add(
         clk,
         addr,
         MEM_write_or_read,
-        Write_data,
+        Write_data_Mem,
         Mem_data
     );
 
@@ -140,7 +149,7 @@ module cpu_add(
         RS,
         RT,
         Write_Reg,
-        Write_Data,
+        Write_data_Reg,
         RegWrite,
         Read_data1,
         Read_data2
@@ -196,6 +205,7 @@ module cpu_add(
         ALUSrcB,
         PCSource
         IorD,
+        DataSrc
     );
 
 endmodule
