@@ -1,7 +1,7 @@
 module mux_datasrc(
     input wire [3:0] sel,
     input wire [31:0] ALUOut,
-    output reg [31:0] Write_data
+    output wire [31:0] Write_data
 );
 
 always@(*) begin

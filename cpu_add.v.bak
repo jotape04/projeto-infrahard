@@ -54,7 +54,7 @@ module cpu_add(
     wire [31:0] B_Out;
 
     wire [31:0] SrcA;
-    wire [31:0] MDR;
+    wire MDR;
 
     wire [31:0] SrcB;
     wire SignExtend;

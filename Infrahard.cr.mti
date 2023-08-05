@@ -1,0 +1,112 @@
+C:/Users/ladvo/infrahard/parts_made/mux_ulaB.v {1 {vlog -work work -stats=none C:/Users/ladvo/infrahard/parts_made/mux_ulaB.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module mux_ulaB
+
+Top level modules:
+	mux_ulaB
+
+} {} {}} C:/Users/ladvo/infrahard/ctrl_unit.v {1 {vlog -work work -stats=none C:/Users/ladvo/infrahard/ctrl_unit.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module ctrl_unit
+
+Top level modules:
+	ctrl_unit
+
+} {} {}} C:/Users/ladvo/infrahard/parts_given/ula32.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/ladvo/infrahard/parts_given/ula32.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity Ula32
+-- Compiling architecture behavioral of Ula32
+
+} {} {}} C:/Users/ladvo/infrahard/parts_made/sign_extend_16.v {1 {vlog -work work -stats=none C:/Users/ladvo/infrahard/parts_made/sign_extend_16.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module sign_extend_16
+
+Top level modules:
+	sign_extend_16
+
+} {} {}} C:/Users/ladvo/infrahard/parts_given/Banco_reg.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/ladvo/infrahard/parts_given/Banco_reg.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity Banco_reg
+-- Compiling architecture behavioral_arch of Banco_reg
+
+} {} {}} C:/Users/ladvo/infrahard/parts_given/RegDesloc.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/ladvo/infrahard/parts_given/RegDesloc.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity RegDesloc
+-- Compiling architecture behavioral_arch of RegDesloc
+
+} {} {}} C:/Users/ladvo/infrahard/parts_made/mux_iord.v {1 {vlog -work work -stats=none C:/Users/ladvo/infrahard/parts_made/mux_iord.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module mux_iord
+
+Top level modules:
+	mux_iord
+
+} {} {}} C:/Users/ladvo/infrahard/parts_given/Memoria.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/ladvo/infrahard/parts_given/Memoria.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Compiling package ram_constants
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package LPM_COMPONENTS
+-- Loading package ram_constants
+-- Compiling entity Memoria
+-- Compiling architecture behavioral_arch of Memoria
+
+} {} {}} C:/Users/ladvo/infrahard/parts_made/mux_regdst.v {1 {vlog -work work -stats=none C:/Users/ladvo/infrahard/parts_made/mux_regdst.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module mux_regdst
+
+Top level modules:
+	mux_regdst
+
+} {} {}} C:/Users/ladvo/infrahard/parts_given/Registrador.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/ladvo/infrahard/parts_given/Registrador.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity Registrador
+-- Compiling architecture behavioral_arch of Registrador
+
+} {} {}} C:/Users/ladvo/infrahard/parts_made/mux_pcsource.v {1 {vlog -work work -stats=none C:/Users/ladvo/infrahard/parts_made/mux_pcsource.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module mux_pcsource
+
+Top level modules:
+	mux_pcsource
+
+} {} {}} C:/Users/ladvo/infrahard/parts_made/mux_datasrc.v {1 {vlog -work work -stats=none C:/Users/ladvo/infrahard/parts_made/mux_datasrc.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module mux_datasrc
+
+Top level modules:
+	mux_datasrc
+
+} {} {}} C:/Users/ladvo/infrahard/parts_given/Instr_Reg.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/ladvo/infrahard/parts_given/Instr_Reg.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity Instr_Reg
+-- Compiling architecture behavioral_arch of Instr_Reg
+
+} {} {}} C:/Users/ladvo/infrahard/parts_made/mux_ulaA.v {1 {vlog -work work -stats=none C:/Users/ladvo/infrahard/parts_made/mux_ulaA.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module mux_ulaA
+
+Top level modules:
+	mux_ulaA
+
+} {} {}}

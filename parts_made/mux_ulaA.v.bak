@@ -3,7 +3,7 @@ module mux_ulaA(
     input wire [31:0] PC,
     input wire [31:0] Reg_A,
     input wire [31:0] MDR,
-    output reg [31:0] Scr_A
+    output wire [31:0] Scr_A
 );
 
     always@(*) begin

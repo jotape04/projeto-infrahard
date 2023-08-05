@@ -8,10 +8,10 @@ module mux_ulaB(
 
     always@(*) begin
         case (sel)
-        2'b00: Scr_B = Reg_B;
-        2'b01: Scr_B = 32'b100;
-        2'b10: Scr_B = sign_extend;
-        2'b11: Scr_B = sign_extend_shift_left;
+        2'b00: Scr_B <= Reg_B;
+        2'b01: Scr_B <= 32'b100;
+        2'b10: Scr_B <= sign_extend;
+        2'b11: Scr_B <= sign_extend_shift_left;
         endcase
     end
 endmodule

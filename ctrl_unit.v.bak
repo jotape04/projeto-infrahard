@@ -236,7 +236,7 @@ module ctrl_unit(
                     reset_out = 1'b1;
                     COUNTER = 3'b000;
             	end
-	   endcase
+		endcase
         end      
     end
 endmodule
