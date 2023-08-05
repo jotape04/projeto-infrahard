@@ -1,4 +1,4 @@
-module mux_ulaA(input wire [1:0] selector,
+module mux_ulaA(input wire [1:0] sel,
                 input wire [31:0] PC,
                 input wire [31:0] Reg_A,
                 input wire [31:0] MDR,
@@ -11,6 +11,4 @@ module mux_ulaA(input wire [1:0] selector,
         2'b10: Scr_A = MDR;
         endcase
     end
-
-
 endmodule

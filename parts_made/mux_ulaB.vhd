@@ -1,4 +1,4 @@
-module mux_ulaB(input wire [1:0] selector,
+module mux_ulaB(input wire [1:0] sel,
                 input wire [31:0] Reg_B,
                 input wire [31:0] sign_extend,
                 input wire [31:0] sign_extend_shift_left,
@@ -12,6 +12,4 @@ module mux_ulaB(input wire [1:0] selector,
         2'b11: Scr_B = sign_extend_shift_left;
         endcase
     end
-
-
 endmodule
