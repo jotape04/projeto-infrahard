@@ -10,21 +10,24 @@ module ctrl_unit(
     input wire Zr,
     input wire Ofw,
 
+    // Opcode
     input wire [5:0] OPCODE,
 
+    // Controllers
     output reg PC_Write,
+    output reg IorD,
     output reg MEM_write_or_read,
     output reg IR_Write,
+    output reg RegDst,
     output reg RegWrite,
     output reg AB_Write,
-    output reg ALUCtrl,
-    output reg RegDst,
     output reg ALUSrcA,
     output reg ALUSrcB,
+    output reg ALUCtrl,
     output reg PCSource,
-    output reg IorD,
     output reg DataSrc,
 
+    // reset controller
     output reg reset_out
 );
 

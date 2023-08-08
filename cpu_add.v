@@ -13,17 +13,17 @@ module cpu_add(
 
     // Control Wires
     wire PC_Write;
-    wire [2:0]IorD;
+    wire [2:0] IorD;
     wire MEM_write_or_read;
     wire IR_Write;
-    wire [1:0]RegDst;
+    wire [1:0] RegDst;
     wire RegWrite;
     wire AB_Write;
-    wire [1:0]ALUSrcA;
-    wire [1:0]ALUSrcB;
+    wire [1:0] ALUSrcA;
+    wire [1:0] ALUSrcB;
     wire [2:0] ALUCtrl;
-    wire [2:0]PCSource;
-    wire [3:0]DataSrc;
+    wire [2:0] PCSource;
+    wire [3:0] DataSrc;
 
     // Data Wires
     wire [31:0] PC_in;
@@ -42,6 +42,7 @@ module cpu_add(
     wire [5:0] OPCODE;
     wire [4:0] RS;
     wire [4:0] RT;
+    wire [4:0] RD;
     wire [15:0] OFFSET;
 
     wire [4:0] Write_Reg;
@@ -53,12 +54,12 @@ module cpu_add(
     wire [31:0] A_Out;
     wire [31:0] B_Out;
 
-    wire [31:0] SrcA;
+    wire [31:0] Src_A;
     wire [31:0] MDR;
 
-    wire [31:0] SrcB;
-    wire SignExtend;
-    wire SignExtendShift;
+    wire [31:0] Src_B;
+    wire [31:0] SignExtend16to32;
+    wire [31:0] SignExtendShift;
 
     wire [31:0] SeiLa;
     wire [31:0] Seila2;
@@ -80,13 +81,13 @@ module cpu_add(
     mux_regdst MuxRegDst_(
         RegDst,
         RT,
-        OFFSET,
+        RD,
         Write_Reg
     );
 
     mux_datasrc MuxDataSrc_(
         DataSrc,
-        RES,
+        RES, // ! ALUOut
         Write_data_Reg
     );
 
@@ -95,15 +96,15 @@ module cpu_add(
         PC_out,
         A_Out,
         MDR,
-        SrcA
+        Src_A
     );
 
     mux_ulaB MuxB_(
         ALUSrcB,
         B_Out,
-        SignExtend,
+        SignExtend16to32,
         SignExtendShift,
-	SrcB
+	    Src_B
     );
 
     mux_pcsource MuxPC_(
@@ -126,11 +127,11 @@ module cpu_add(
     );
 
     Memoria MEM_(
-        clk,
         addr,
+        clk,
         MEM_write_or_read,
         Write_data_Mem,
-        Mem_data
+        Mem_data,
     );
 
     Instr_Reg IR_(
@@ -147,11 +148,11 @@ module cpu_add(
     Banco_reg Regs_(
         clk,
         reset,
+        RegWrite,
         RS,
         RT,
         Write_Reg,
         Write_data_Reg,
-        RegWrite,
         Read_data1,
         Read_data2
     );
@@ -173,40 +174,46 @@ module cpu_add(
     );
 
     ula32 ULA_(
-        SrcA,
-        SrcB,
+        Src_A,
+        Src_B,
         ALUCtrl,
-        Gt,
-        Eq,
         RES,
-        Lt,
-        Ofw,
-        Ng,
-        Zr
-    );
-
-    ctrl_unit Ctrl_(
-        clk,
-        reset,
         Ofw,
         Ng,
         Zr,
         Eq,
         Gt,
+        Lt
+    );
+
+    ctrl_unit Ctrl_(
+        clk,//
+        reset,
+        Gt,//
+        Eq,
         Lt,
-        OPCODE,
-        PC_Write,
+        Ng,
+        Zr,
+        Ofw,
+        OPCODE,//
+        PC_Write,//
+        IorD,
         MEM_write_or_read,
         IR_Write,
+        RegDst,
         RegWrite,
         AB_Write,
-        ALUCtrl,
-        RegDst,
         ALUSrcA,
         ALUSrcB,
+        ALUCtrl,
         PCSource,
-        IorD,
         DataSrc
     );
 
 endmodule
+
+/* //! todo:
+[] - aplicar sign_extend_16_32
+[] - aplicar shiftleft para resultar em SignExtendShift
+[] - implementar registrador ALUOut junto com o controlador ALUOutCtrl (?)
+*/

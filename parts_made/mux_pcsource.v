@@ -13,8 +13,8 @@ module mux_pcsource(
     case (sel)
       3'b000: PC_in = RES;
       3'b001: PC_in = ALUOut;
-      3'b010: PC_in = Seila;
-      3'b011: PC_in = Seila2;
+      3'b010: PC_in = Seila; // shift left (26 to 28 bits) + PC
+      3'b011: PC_in = Seila2; // sign extend (4 to 32 bits)
       3'b100: PC_in = MDR;
       3'b101: PC_in = EPC;
       3'b110: PC_in = 32'b0;
