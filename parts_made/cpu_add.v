@@ -24,6 +24,7 @@ module cpu_add(
     wire [2:0] ALUCtrl;
     wire [2:0] PCSource;
     wire [3:0] DataSrc;
+    wire ALUOutCtrl;
 
     // Data Wires
     wire [31:0] PC_in;
@@ -71,6 +72,14 @@ module cpu_add(
         SignExtend16to32
     );
 
+    Registrador ALUOUT(
+        clk,
+        reset,
+        ALUOutCtrl,
+        RES,
+        ALUOut
+    );
+
     mux_iord MuxIord_(
         IorD,
         PC_out,
@@ -91,7 +100,7 @@ module cpu_add(
 
     mux_datasrc MuxDataSrc_(
         DataSrc,
-        RES, // ! AluOut
+        ALUOut,
         Write_data_Reg
     );
 
@@ -210,6 +219,7 @@ module cpu_add(
         ALUSrcA,
         ALUSrcB,
         ALUCtrl,
+        ALUOutCtrl,
         PCSource,
         DataSrc,
         reset
@@ -218,7 +228,7 @@ module cpu_add(
 endmodule
 
 /* //! todo:
-[] - aplicar sign_extend_16_32
+[x] - aplicar sign_extend_16_32
 [] - aplicar shiftleft para resultar em SignExtendShift
-[] - implementar registrador ALUOut junto com o controlador ALUOutCtrl (?)
+[x] - implementar registrador ALUOut junto com o controlador ALUOutCtrl (?)
 */

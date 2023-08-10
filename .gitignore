@@ -1,0 +1,12 @@
+# Ignore Quartus-specific files
+*.cr.mti
+*.mpf
+*.wlf
+*.qdb
+*.qtl
+*.qpg
+
+# Ignore transcript files
+transcript
+_info
+_vmake

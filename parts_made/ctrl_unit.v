@@ -24,6 +24,7 @@ module ctrl_unit(
     output reg [1:0] ALUSrcA,
     output reg [1:0] ALUSrcB,
     output reg [2:0] ALUCtrl,
+    output reg ALUOutCtrl,
     output reg [2:0] PCSource,
     output reg [3:0] DataSrc,
 
@@ -58,6 +59,7 @@ module ctrl_unit(
                 RegWrite = 1'b0;
                 AB_Write = 1'b0;
                 ALUCtrl = 3'b000;
+                ALUOutCtrl = 1'b0;
                 RegDst = 2'b00;
                 ALUSrcA = 2'b00;
                 ALUSrcB = 2'b00;
@@ -77,6 +79,7 @@ module ctrl_unit(
                 RegWrite = 1'b0;
                 AB_Write = 1'b0;
                 ALUCtrl = 3'b000;
+                ALUOutCtrl = 1'b0;
                 RegDst = 2'b00;
                 ALUSrcA = 2'b00;
                 ALUSrcB = 2'b00;
@@ -100,6 +103,7 @@ module ctrl_unit(
                         RegWrite = 1'b0;
                         AB_Write = 1'b0;
                         ALUCtrl = 3'b001; //
+                        ALUOutCtrl = 1'b0; // ! pay attention
                         RegDst = 2'b00;
                         ALUSrcA = 2'b00;
                         ALUSrcB = 2'b01; //
@@ -120,6 +124,7 @@ module ctrl_unit(
                         RegWrite = 1'b0;
                         AB_Write = 1'b0;
                         ALUCtrl = 3'b001; //
+                        ALUOutCtrl = 1'b1; // ! pay attention
                         RegDst = 2'b00;
                         ALUSrcA = 2'b00; //
                         ALUSrcB = 2'b01; //
@@ -141,6 +146,7 @@ module ctrl_unit(
                         RegWrite = 1'b0;
                         AB_Write = 1'b1; ///
                         ALUCtrl = 3'b000;
+                        ALUOutCtrl = 1'b0; // ! pay attention
                         RegDst = 2'b00;
                         ALUSrcA = 2'b00;
                         ALUSrcB = 2'b00;
@@ -174,6 +180,7 @@ module ctrl_unit(
                         RegWrite = 1'b0;
                         AB_Write = 1'b0;
                         ALUCtrl = 3'b000;
+                        ALUOutCtrl = 1'b0;
                         RegDst = 2'b00;
                         ALUSrcA = 2'b00;
                         ALUSrcB = 2'b00;
@@ -194,6 +201,7 @@ module ctrl_unit(
                     RegWrite = 1'b1; ///
                     AB_Write = 1'b0;
                     ALUCtrl = 3'b001; ///
+                    ALUOutCtrl = 1'b0;
                     RegDst = 2'b01; ///
                     ALUSrcA = 2'b01; ///
                     ALUSrcB = 2'b00; ///
@@ -218,6 +226,7 @@ module ctrl_unit(
                     RegWrite = 1'b1; ///
                     AB_Write = 1'b0;
                     ALUCtrl = 3'b001; ///
+                    ALUOutCtrl = 1'b0;
                     RegDst = 2'b00; ///
                     ALUSrcA = 2'b01; ///
                     ALUSrcB = 2'b10; ///
@@ -243,6 +252,7 @@ module ctrl_unit(
                         RegWrite = 1'b0;
                         AB_Write = 1'b0;
                         ALUCtrl = 3'b000;
+                        ALUOutCtrl = 1'b0;
                         RegDst = 2'b00;
                         ALUSrcA = 2'b00;
                         ALUSrcB = 2'b00;
