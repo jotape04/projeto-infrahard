@@ -43,8 +43,8 @@ module cpu_add(
     wire [5:0] OPCODE;
     wire [4:0] RS;
     wire [4:0] RT;
-    wire [4:0] RD;
-    wire [15:0] OFFSET;
+    wire [15:0] OFFSET; // the immediate
+    wire [4:0] RD = OFFSET[15:11];
 
     wire [4:0] Write_Reg;
 
@@ -58,7 +58,7 @@ module cpu_add(
     wire [31:0] MDR;
 
     wire [31:0] Src_B;
-    wire [31:0] SignExtend16to32;
+    wire [31:0] SignExtend16to32; // the extended immediate
     wire [31:0] SignExtendShift;
 
     wire [31:0] SeiLa;
@@ -66,6 +66,10 @@ module cpu_add(
     wire [31:0] EPC;
 
 
+    sign_extend_16_32 signExt16to32( // extends the immediate
+        OFFSET,
+        SignExtend16to32
+    );
 
     mux_iord MuxIord_(
         IorD,
@@ -87,7 +91,7 @@ module cpu_add(
 
     mux_datasrc MuxDataSrc_(
         DataSrc,
-        ALUOut,
+        RES, // ! AluOut
         Write_data_Reg
     );
 
@@ -207,7 +211,8 @@ module cpu_add(
         ALUSrcB,
         ALUCtrl,
         PCSource,
-        DataSrc
+        DataSrc,
+        reset
     );
 
 endmodule

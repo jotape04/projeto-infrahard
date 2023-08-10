@@ -15,17 +15,17 @@ module ctrl_unit(
 
     // Controllers
     output reg PC_Write,
-    output reg IorD,
+    output reg [2:0] IorD,
     output reg MEM_write_or_read,
     output reg IR_Write,
-    output reg RegDst,
+    output reg [1:0] RegDst,
     output reg RegWrite,
     output reg AB_Write,
-    output reg ALUSrcA,
-    output reg ALUSrcB,
-    output reg ALUCtrl,
-    output reg PCSource,
-    output reg DataSrc,
+    output reg [1:0] ALUSrcA,
+    output reg [1:0] ALUSrcB,
+    output reg [2:0] ALUCtrl,
+    output reg [2:0] PCSource,
+    output reg [3:0] DataSrc,
 
     // reset controller
     output reg reset_out
@@ -234,21 +234,25 @@ module ctrl_unit(
                     end
                 end
                 ST_RESET: begin
-                    PC_Write = 1'b0;
-                    MEM_write_or_read = 1'b0;
-                    IR_Write = 1'b0;
-                    RegWrite = 1'b0;
-                    AB_Write = 1'b0;
-                    ALUCtrl = 3'b000;
-                    RegDst = 2'b00;
-                    ALUSrcA = 2'b00;
-                    ALUSrcB = 2'b00;
-                    PCSource = 3'b000;
-                    IorD = 3'b000;
-                    DataSrc = 4'b0000;
+                    if (COUNTER == 3'b000) begin
+                        STATE = ST_RESET;
 
-                    reset_out = 1'b1;
-                    COUNTER = 3'b000;
+                        PC_Write = 1'b0;
+                        MEM_write_or_read = 1'b0;
+                        IR_Write = 1'b0;
+                        RegWrite = 1'b0;
+                        AB_Write = 1'b0;
+                        ALUCtrl = 3'b000;
+                        RegDst = 2'b00;
+                        ALUSrcA = 2'b00;
+                        ALUSrcB = 2'b00;
+                        PCSource = 3'b000;
+                        IorD = 3'b000;
+                        DataSrc = 4'b0000;
+
+                        reset_out = 1'b1;
+                        COUNTER = 3'b000;
+                    end
             	end
 	   endcase
         end      
