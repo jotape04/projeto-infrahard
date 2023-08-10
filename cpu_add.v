@@ -87,7 +87,7 @@ module cpu_add(
 
     mux_datasrc MuxDataSrc_(
         DataSrc,
-        RES, // ! ALUOut
+        ALUOut,
         Write_data_Reg
     );
 

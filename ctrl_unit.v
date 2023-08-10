@@ -186,6 +186,8 @@ module ctrl_unit(
                     end
                 end
                 ST_ADD: begin
+                    STATE = ST_ADD;
+
                     PC_Write = 1'b0;
                     MEM_write_or_read = 1'b0;
                     IR_Write = 1'b0;
@@ -208,6 +210,8 @@ module ctrl_unit(
                     end
                 end
                 ST_ADDI: begin
+                    STATE = ST_ADDI;
+
                     PC_Write = 1'b0;
                     MEM_write_or_read = 1'b0;
                     IR_Write = 1'b0;
