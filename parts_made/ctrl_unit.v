@@ -193,51 +193,123 @@ module ctrl_unit(
                     end
                 end
                 ST_ADD: begin
-                    STATE = ST_ADD;
+                    if (COUNTER == 3'b000) begin
+                        STATE = ST_ADD;
 
-                    PC_Write = 1'b0;
-                    MEM_write_or_read = 1'b0;
-                    IR_Write = 1'b0;
-                    RegWrite = 1'b1; ///
-                    AB_Write = 1'b0;
-                    ALUCtrl = 3'b001; ///
-                    ALUOutCtrl = 1'b0;
-                    RegDst = 2'b01; ///
-                    ALUSrcA = 2'b01; ///
-                    ALUSrcB = 2'b00; ///
-                    PCSource = 3'b000;
-                    IorD = 3'b000;
-                    DataSrc = 4'b0000; ///
+                        PC_Write = 1'b0;
+                        MEM_write_or_read = 1'b0;
+                        IR_Write = 1'b0;
+                        RegWrite = 1'b0;
+                        AB_Write = 1'b0;
+                        ALUCtrl = 3'b001; ///
+                        ALUOutCtrl = 1'b1;
+                        RegDst = 2'b00;
+                        ALUSrcA = 2'b01; ///
+                        ALUSrcB = 2'b00; ///
+                        PCSource = 3'b000;
+                        IorD = 3'b000;
+                        DataSrc = 4'b0000;
 
-                    reset_out = 1'b0;
-                    COUNTER = COUNTER + 1;
+                        reset_out = 1'b0;
+                        COUNTER = COUNTER + 1;
+                    end
+                    else if (COUNTER == 3'b001) begin
+                        STATE = ST_ADD;
 
-                    if (COUNTER == 3'b010) begin
+                        PC_Write = 1'b0;
+                        MEM_write_or_read = 1'b0;
+                        IR_Write = 1'b0;
+                        RegWrite = 1'b1; ///
+                        AB_Write = 1'b0;
+                        ALUCtrl = 3'b001; ///
+                        ALUOutCtrl = 1'b0;
+                        RegDst = 2'b01; ///
+                        ALUSrcA = 2'b01; ///
+                        ALUSrcB = 2'b00; ///
+                        PCSource = 3'b000;
+                        IorD = 3'b000;
+                        DataSrc = 4'b0000; ///
+
+                        reset_out = 1'b0;
+                        COUNTER = COUNTER + 1;
+                    end
+                    else if (COUNTER == 3'b010) begin
+                        PC_Write = 1'b0;
+                        MEM_write_or_read = 1'b0;
+                        IR_Write = 1'b0;
+                        RegWrite = 1'b0; ///
+                        AB_Write = 1'b0;
+                        ALUCtrl = 3'b001; ///
+                        ALUOutCtrl = 1'b0;
+                        RegDst = 2'b01; ///
+                        ALUSrcA = 2'b01; ///
+                        ALUSrcB = 2'b00; ///
+                        PCSource = 3'b000;
+                        IorD = 3'b000;
+                        DataSrc = 4'b0000; ///
+
+                        reset_out = 1'b0;
                         STATE = ST_COMMON;
                         COUNTER = 3'b000;
                     end
                 end
                 ST_ADDI: begin
-                    STATE = ST_ADDI;
+                    if (COUNTER == 3'b000) begin
+                        STATE = ST_ADDI;
 
-                    PC_Write = 1'b0;
-                    MEM_write_or_read = 1'b0;
-                    IR_Write = 1'b0;
-                    RegWrite = 1'b1; ///
-                    AB_Write = 1'b0;
-                    ALUCtrl = 3'b001; ///
-                    ALUOutCtrl = 1'b0;
-                    RegDst = 2'b00; ///
-                    ALUSrcA = 2'b01; ///
-                    ALUSrcB = 2'b10; ///
-                    PCSource = 3'b000;
-                    IorD = 3'b000;
-                    DataSrc = 4'b0000;
+                        PC_Write = 1'b0;
+                        MEM_write_or_read = 1'b0;
+                        IR_Write = 1'b0;
+                        RegWrite = 1'b0;
+                        AB_Write = 1'b0;
+                        ALUCtrl = 3'b001; ///
+                        ALUOutCtrl = 1'b1; // ! pay attention
+                        RegDst = 2'b00; ///
+                        ALUSrcA = 2'b01; ///
+                        ALUSrcB = 2'b10; ///
+                        PCSource = 3'b000;
+                        IorD = 3'b000;
+                        DataSrc = 4'b0000;
 
-                    reset_out = 1'b0;
-                    COUNTER = COUNTER + 1;
+                        reset_out = 1'b0;
+                        COUNTER = COUNTER + 1;
+                    end
+                    else if (COUNTER == 3'b001) begin
+                        STATE = ST_ADDI;
 
-                    if (COUNTER == 3'b010) begin
+                        PC_Write = 1'b0;
+                        MEM_write_or_read = 1'b0;
+                        IR_Write = 1'b0;
+                        RegWrite = 1'b1;
+                        AB_Write = 1'b0;
+                        ALUCtrl = 3'b001; ///
+                        ALUOutCtrl = 1'b1; // ! pay attention
+                        RegDst = 2'b00; ///
+                        ALUSrcA = 2'b01; ///
+                        ALUSrcB = 2'b10; ///
+                        PCSource = 3'b000;
+                        IorD = 3'b000;
+                        DataSrc = 4'b0000;
+
+                        reset_out = 1'b0;
+                        COUNTER = COUNTER + 1;
+                    end
+                    else if (COUNTER == 3'b010) begin
+                        PC_Write = 1'b0;
+                        MEM_write_or_read = 1'b0;
+                        IR_Write = 1'b0;
+                        RegWrite = 1'b0;
+                        AB_Write = 1'b0;
+                        ALUCtrl = 3'b001; ///
+                        ALUOutCtrl = 1'b1; // ! pay attention
+                        RegDst = 2'b00; ///
+                        ALUSrcA = 2'b01; ///
+                        ALUSrcB = 2'b10; ///
+                        PCSource = 3'b000;
+                        IorD = 3'b000;
+                        DataSrc = 4'b0000;
+
+                        reset_out = 1'b0;
                         STATE = ST_COMMON;
                         COUNTER = 3'b000;
                     end
