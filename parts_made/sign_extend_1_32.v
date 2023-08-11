@@ -1,4 +1,4 @@
-module zero_extender_1 (
+module sign_extend_1_32 (
     input wire Data_in,
     output wire [31:0] Data_out
 );

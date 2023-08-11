@@ -27,7 +27,7 @@ module cpu_add(
     wire LoCtrl;
     wire MDRCtrl;
     wire IR_Write;
-    wire LSCtrl;
+    wire [1:0] LSCtrl;
     wire [1:0] RegDst;
     wire RegWrite;
     wire AB_Write;
@@ -38,8 +38,9 @@ module cpu_add(
     wire EPCCtrl;
     wire [2:0] PCSource;
     wire [3:0] DataSrc;
-    wire [2:0]ShiftAmt;
     wire ShiftSrc;
+    wire ShiftAmt;
+    wire [2:0] ShiftCtrl;
     wire [1:0] Branch_Ctrl;
 
     // Data Wires
@@ -63,7 +64,7 @@ module cpu_add(
     wire [15:0] OFFSET; // the immediate
     wire [4:0] RD = OFFSET[15:11];
     wire [5:0] Funct = OFFSET[5:0];
-    wire [5:0] shamt = OFFSET[10:6];
+    wire [4:0] shamt = OFFSET[10:6];
 
     wire [4:0] Write_Reg;
 
@@ -78,10 +79,13 @@ module cpu_add(
     wire [31:0] Src_B;
     wire [31:0] SignExtend16to32; // the extended immediate
     wire [31:0] SignExtendShiftLeft;
+    wire [31:0] Sign_extend_1_32_out;
 
+    wire [31:0] Shift_left;
     wire [31:0] shift_left_2_pc_out;
     wire [31:0] sign_extend_4_32_out;
     wire [31:0] EPC;
+    wire [31:0] RegShift_out;
 
     wire [31:0] MultHi;
     wire [31:0] MultLo;
@@ -105,7 +109,7 @@ module cpu_add(
 
     wire [31:0] EPC_out;
 
-    wire [32:0] ShiftSrc_in;
+    wire [31:0] ShiftSrc_in;
     wire[4:0] Shamt_in;
 
     sign_extend_16_32 signExt16to32(
@@ -175,10 +179,10 @@ module cpu_add(
         LS_out,
         Hi_out,
         Lo_out,
-        Sign_extend_1_32,
-        Sign_extend_16_32,
+        Sign_extend_1_32_out,
+        SignExtend16to32,
         Shift_left,
-        Reg_shift,
+        RegShift_out,
         Write_data_Reg
     );
 
@@ -417,6 +421,16 @@ module cpu_add(
         RT,
         OFFSET,
         shift_left_2_pc_out
+    );
+
+    sign_extend_1_32 sign_extend_1_32(
+        Lt,
+        Sign_extend_1_32_out 
+    );
+
+    shift_left_2 shift_left_2(
+        SignExtend16to32,
+        SignExtendShiftLeft
     );
 
 endmodule

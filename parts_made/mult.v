@@ -5,8 +5,7 @@ module mult(
     input wire [31:0] a,
     input wire [31:0] b,
     output reg [31:0] Hi,
-    output reg [31:0] Lo,
-    output reg mult_end
+    output reg [31:0] Lo
 
 );
 
@@ -20,7 +19,6 @@ module mult(
         if(reset == 1'b1) begin
             Hi = 32'b0;
             Lo = 32'b0;
-            mult_end = 1'b0;
             add = 65'b0;
             sub = 65'b0;
             produto = 65'b0;
@@ -33,7 +31,6 @@ module mult(
             sub = {complemento2, 33'b0}; 
             produto = {32'b0, b, 1'b0};
             count_cycles = 32;
-            mult_end = 1'b0;
         end
 
         if({produto[1], produto[0]} == 2'b01)
@@ -57,7 +54,6 @@ module mult(
         if(count_cycles == 0) begin
             Hi = produto[64:33];
             Lo = produto[32:1];
-            mult_end = 1'b1;
 
             // reseting
             add = 65'b0;
