@@ -357,22 +357,32 @@ module cpu_add(
     );
 
     ctrl_unit Ctrl_(
-        clk,//
+        clk,
         reset,
-        Gt,//
+        Gt,
         Eq,
         Lt,
         Ng,
         Zr,
         Ofw,
-        OPCODE,//
+        OPCODE,
         Funct,
-        PCWrite,//
+        PCWrite,
         PCWriteCond,
-        Branch_Ctrl,
+        ExcptCtrl,
         IorD,
+        SSCtrl,
+        mult_ctrl,
+        DIVASelect,
+        DIVBSelect,
+        div_ctrl,
+        MDSelect,
         MEM_write_or_read,
+        HiCtrl,
+        LoCtrl,
+        MDRCtrl,
         IR_Write,
+        LSCtrl,
         RegDst,
         RegWrite,
         AB_Write,
@@ -380,8 +390,13 @@ module cpu_add(
         ALUSrcB,
         ALUCtrl,
         ALUOutCtrl,
+        EPCCtrl,
         PCSource,
         DataSrc,
+        ShiftSrc,
+        ShiftAmt,
+        ShiftCtrl,
+        Branch_Ctrl,
         reset
     );
 
@@ -434,9 +449,3 @@ module cpu_add(
     );
 
 endmodule
-
-/* //! todo:
-[x] - aplicar sign_extend_16_32
-[] - aplicar shiftleft para resultar em SignExtendShift
-[x] - implementar registrador ALUOut junto com o controlador ALUOutCtrl (?)
-*/
