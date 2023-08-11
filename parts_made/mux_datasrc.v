@@ -7,7 +7,7 @@ module mux_datasrc(
     input wire [31:0] Sign_extend_1_32,
     input wire [31:0] Sign_extend_16_32,
     input wire [31:0] Shift_left,
-    input wire [31:0] RegShift_out,
+    input wire [31:0] Reg_shift,
     output reg [31:0] Write_data
 );
 
