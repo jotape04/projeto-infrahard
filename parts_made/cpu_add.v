@@ -21,8 +21,7 @@ module cpu_add(
     wire mult_ctrl;
     wire DIVASelect;
     wire DIVBSelect;
-    wire RegAWrite;
-    wire RegBWrite;
+    wire div_ctrl;
     wire MDSelect;
     wire MEM_write_or_read;
     wire HiCtrl;
@@ -80,7 +79,7 @@ module cpu_add(
     wire [31:0] SignExtend16to32; // the extended immediate
     wire [31:0] SignExtendShiftLeft;
 
-    wire [31:0] SeiLa;
+    wire [31:0] shift_left_2_pc_out;
     wire [31:0] Seila2;
     wire [31:0] EPC;
 
@@ -91,6 +90,7 @@ module cpu_add(
     wire [31:0] DIV_B_in;
     wire [31:0] DivHi;
     wire [31:0] DivLo;
+    wire div_end;
     wire DIVQ;
 
     wire [31:0] Hi_in;
@@ -193,7 +193,7 @@ module cpu_add(
         PCSource,
         RES,
         ALUOut,
-        SeiLa,
+        shift_left_2_pc_out,
         Seila2,
         MDR_out,
         EPC_out,
@@ -209,18 +209,16 @@ module cpu_add(
     );
 
     ss SS_(
-        clk,
-        reset,
         SSCtrl,
-        B_Out,
         MDR_out,
+        B_Out,
         Write_data_Mem
     );
 
     mult Mult_(
         clk,
-        reset,
         mult_ctrl,
+        reset,
         A_Out,
         B_Out,
         MultHi,
@@ -230,12 +228,12 @@ module cpu_add(
     div Div_(
         clk,
         reset,
-        RegAWrite,
-        RegBWrite,
+        div_ctrl,
         DIV_A_in,
         DIV_B_in,
         DivHi,
         DivLo,
+        div_end,
         DIVQ
     );
 
@@ -283,8 +281,6 @@ module cpu_add(
     );
 
     Registrador LS_(
-        clk,
-        reset,
         LSCtrl,
         MDR_out,
         LS_out
@@ -404,6 +400,14 @@ module cpu_add(
         //Falta o sinal de controle de PC
 
     );
+
+    shift_left_2_PC shift_left_2_PC(
+        PC_out,
+        RS,
+        RT,
+        OFFSET,
+        shift_left_2_pc_out
+    )
 
 endmodule
 
