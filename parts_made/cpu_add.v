@@ -1,6 +1,6 @@
 module cpu_add(
     input clk,
-    input reset,
+    input reset
 );
 
     // Flags
@@ -13,8 +13,7 @@ module cpu_add(
 
     // Control Wires
     wire PCWrite;
-    wire PCCtrl;
-    wire PCWriteCond,
+    wire PCWriteCond;
     wire [1:0] ExcptCtrl;
     wire [2:0] IorD;
     wire [1:0] SSCtrl;
@@ -42,11 +41,13 @@ module cpu_add(
     wire [3:0] DataSrc;
     wire [2:0]ShiftAmt;
     wire ShiftSrc;
-    wire [1:0] Branch_Ctrl
+    wire [1:0] Branch_Ctrl;
 
     // Data Wires
     wire [31:0] PC_in;
     wire [31:0] PC_out;
+
+    wire PCCtrl;
 
     wire [31:0] RES;
     wire [31:0] ALUOut;
@@ -106,7 +107,7 @@ module cpu_add(
     wire [31:0] EPC_out;
 
     wire [32:0] ShiftSrc_in;
-    wire[4:0] Shamt_in
+    wire[4:0] Shamt_in;
 
     sign_extend_16_32 signExt16to32(
         OFFSET,
@@ -359,7 +360,8 @@ module cpu_add(
         Ofw,
         OPCODE,//
         Funct,
-        PCCtrl,//
+        PCWrite,//
+        PCWriteCond,
         IorD,
         MEM_write_or_read,
         IR_Write,
@@ -411,7 +413,7 @@ module cpu_add(
         RT,
         OFFSET,
         shift_left_2_pc_out
-    )
+    );
 
 endmodule
 

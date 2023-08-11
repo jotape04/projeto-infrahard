@@ -16,6 +16,7 @@ module ctrl_unit(
 
     // Controllers
     output reg PC_Write,
+    output reg PC_WriteCond,
     output reg [2:0] IorD,
     output reg MEM_write_or_read,
     output reg IR_Write,
@@ -98,6 +99,7 @@ module ctrl_unit(
                 STATE = ST_RESET;
 
                 PC_Write = 1'b0;
+                PC_WriteCond = 1'b0;
                 MEM_write_or_read = 1'b0;
                 IR_Write = 1'b0;
                 RegWrite = 1'b0;
@@ -118,6 +120,7 @@ module ctrl_unit(
                 STATE = ST_COMMON;
 
                 PC_Write = 1'b0;
+                PC_WriteCond = 1'b0;
                 MEM_write_or_read = 1'b0;
                 IR_Write = 1'b0;
                 RegWrite = 1'b0;
@@ -142,6 +145,7 @@ module ctrl_unit(
                         STATE = ST_COMMON;
 
                         PC_Write = 1'b0;
+                        PC_WriteCond = 1'b0;
                         MEM_write_or_read = 1'b0;
                         IR_Write = 1'b0;
                         RegWrite = 1'b0;
@@ -163,6 +167,7 @@ module ctrl_unit(
                         STATE = ST_COMMON;
 
                         PC_Write = 1'b1; //
+                        PC_WriteCond = 1'b0;
                         MEM_write_or_read = 1'b0; //
                         IR_Write = 1'b1; //
                         RegWrite = 1'b0;
@@ -185,6 +190,7 @@ module ctrl_unit(
                         STATE = ST_COMMON;
 
                         PC_Write = 1'b0;
+                        PC_WriteCond = 1'b0;
                         MEM_write_or_read = 1'b0;
                         IR_Write = 1'b0;
                         RegWrite = 1'b0;
@@ -230,6 +236,7 @@ module ctrl_unit(
                         endcase
                        
                         PC_Write = 1'b0;
+                        PC_WriteCond = 1'b0;
                         MEM_write_or_read = 1'b0;
                         IR_Write = 1'b0;
                         RegWrite = 1'b0;
@@ -252,6 +259,7 @@ module ctrl_unit(
                         STATE = ST_ADD;
 
                         PC_Write = 1'b0;
+                        PC_WriteCond = 1'b0;
                         MEM_write_or_read = 1'b0;
                         IR_Write = 1'b0;
                         RegWrite = 1'b0;
@@ -272,6 +280,7 @@ module ctrl_unit(
                         STATE = ST_ADD;
 
                         PC_Write = 1'b0;
+                        PC_WriteCond = 1'b0;
                         MEM_write_or_read = 1'b0;
                         IR_Write = 1'b0;
                         RegWrite = 1'b1; ///
@@ -290,6 +299,7 @@ module ctrl_unit(
                     end
                     else if (COUNTER == 3'b010) begin
                         PC_Write = 1'b0;
+                        PC_WriteCond = 1'b0;
                         MEM_write_or_read = 1'b0;
                         IR_Write = 1'b0;
                         RegWrite = 1'b0; ///
@@ -313,6 +323,7 @@ module ctrl_unit(
                         STATE = ST_ADDI;
 
                         PC_Write = 1'b0;
+                        PC_WriteCond = 1'b0;
                         MEM_write_or_read = 1'b0;
                         IR_Write = 1'b0;
                         RegWrite = 1'b0;
@@ -333,6 +344,7 @@ module ctrl_unit(
                         STATE = ST_ADDI;
 
                         PC_Write = 1'b0;
+                        PC_WriteCond = 1'b0;
                         MEM_write_or_read = 1'b0;
                         IR_Write = 1'b0;
                         RegWrite = 1'b1;
@@ -351,6 +363,7 @@ module ctrl_unit(
                     end
                     else if (COUNTER == 3'b010) begin
                         PC_Write = 1'b0;
+                        PC_WriteCond = 1'b0;
                         MEM_write_or_read = 1'b0;
                         IR_Write = 1'b0;
                         RegWrite = 1'b0;
@@ -374,6 +387,7 @@ module ctrl_unit(
                         STATE = ST_RESET;
 
                         PC_Write = 1'b0;
+                        PC_WriteCond = 1'b0;
                         MEM_write_or_read = 1'b0;
                         IR_Write = 1'b0;
                         RegWrite = 1'b0;
@@ -396,6 +410,7 @@ module ctrl_unit(
                         STATE = ST_ADD;
 
                         PC_Write = 1'b0;
+                        PC_WriteCond = 1'b0;
                         MEM_write_or_read = 1'b0;
                         IR_Write = 1'b0;
                         RegWrite = 1'b0;
@@ -416,6 +431,7 @@ module ctrl_unit(
                         STATE = ST_ADD;
 
                         PC_Write = 1'b0;
+                        PC_WriteCond = 1'b0;
                         MEM_write_or_read = 1'b0;
                         IR_Write = 1'b0;
                         RegWrite = 1'b1; ///
@@ -434,6 +450,7 @@ module ctrl_unit(
                     end
                     else if (COUNTER == 3'b010) begin
                         PC_Write = 1'b0;
+                        PC_WriteCond = 1'b0;
                         MEM_write_or_read = 1'b0;
                         IR_Write = 1'b0;
                         RegWrite = 1'b0; ///
@@ -457,6 +474,7 @@ module ctrl_unit(
                         STATE = ST_ADD;
 
                         PC_Write = 1'b0;
+                        PC_WriteCond = 1'b0;
                         MEM_write_or_read = 1'b0;
                         IR_Write = 1'b0;
                         RegWrite = 1'b0;
@@ -477,6 +495,7 @@ module ctrl_unit(
                         STATE = ST_ADD;
 
                         PC_Write = 1'b0;
+                        PC_WriteCond = 1'b0;
                         MEM_write_or_read = 1'b0;
                         IR_Write = 1'b0;
                         RegWrite = 1'b1; ///
@@ -495,6 +514,7 @@ module ctrl_unit(
                     end
                     else if (COUNTER == 3'b010) begin
                         PC_Write = 1'b0;
+                        PC_WriteCond = 1'b0;
                         MEM_write_or_read = 1'b0;
                         IR_Write = 1'b0;
                         RegWrite = 1'b0; ///
