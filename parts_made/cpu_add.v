@@ -13,7 +13,7 @@ module cpu_add(
 
     // Control Wires
     wire PCWrite;
-    wire PC_Write;
+    wire PCCtrl;
     wire PCWriteCond,
     wire [1:0] ExcptCtrl;
     wire [2:0] IorD;
@@ -203,7 +203,7 @@ module cpu_add(
     Registrador PC_(
         clk,
         reset,
-        PC_Write,
+        PCCtrl,
         PC_in,
         PC_out
     );
@@ -358,7 +358,7 @@ module cpu_add(
         Ofw,
         OPCODE,//
         Funct,
-        PC_Write,//
+        PCCtrl,//
         IorD,
         MEM_write_or_read,
         IR_Write,
@@ -401,7 +401,7 @@ module cpu_add(
         Eq,
         PCWrite,
         PCWriteCond,
-        PC_Write
+        PCCtrl
     );
 
 endmodule
