@@ -36,10 +36,17 @@ module mult(
             mult_end = 1'b0;
         end
 
-        case (produto[1:0])
-            2'b01: produto = produto + add;
-            2'b10: produto = produto + sub;
-        endcase
+        if({produto[1], produto[0]} == 2'b01)
+        begin
+            produto = produto + add;
+        end
+        else
+        begin
+            if ({produto[1], produto[0]} == 2'b10)
+            begin
+                produto = produto + sub;
+            end
+        end
 
         produto = produto >>> 1;
         
@@ -59,5 +66,5 @@ module mult(
             count_cycles = -1;
         end
     end
-    
+
 endmodule
