@@ -35,9 +35,10 @@ module cpu_add(
     wire [1:0] ALUSrcA;
     wire [1:0] ALUSrcB;
     wire [2:0] ALUCtrl;
+    wire ALUOutCtrl;
+    wire EPCCtrl;
     wire [2:0] PCSource;
     wire [3:0] DataSrc;
-    wire ALUOutCtrl;
 
     // Data Wires
     wire [31:0] PC_in;
@@ -46,8 +47,6 @@ module cpu_add(
     wire [31:0] RES;
     wire [31:0] ALUOut;
     wire [31:0] Excpt;
-    wire [31:0] Reg_A;
-    wire [31:0] Reg_B;
     wire [31:0] addr;
 
     wire [31:0] Write_data_Reg;
@@ -70,11 +69,10 @@ module cpu_add(
     wire [31:0] B_Out;
 
     wire [31:0] Src_A;
-    wire [31:0] MDR;
 
     wire [31:0] Src_B;
     wire [31:0] SignExtend16to32; // the extended immediate
-    wire [31:0] SignExtendShift;
+    wire [31:0] SignExtendShiftLeft;
 
     wire [31:0] SeiLa;
     wire [31:0] Seila2;
@@ -99,6 +97,8 @@ module cpu_add(
 
     wire [31:0] LS_out;
 
+    wire [31:0] EPC_out;
+
     sign_extend_16_32 signExt16to32( // extends the immediate
         OFFSET,
         SignExtend16to32
@@ -115,22 +115,22 @@ module cpu_add(
         RES,
         ALUOut,
         Excpt,
-        Reg_A,
-        Reg_B,
+        A_Out,
+        B_Out,
         addr
     );
 
     mux_2_to_1 MuxDivASelect_(
         DIVASelect,
         A_Out,
-        MDR,
+        MDR_out,
         DIV_A_in
     );
 
     mux_2_to_1 MuxDivBSelect_(
         DIVBSelect,
         B_Out,
-        MDR,
+        MDR_out,
         DIV_B_in
     );
 
@@ -168,7 +168,7 @@ module cpu_add(
         ALUSrcA,
         PC_out,
         A_Out,
-        MDR,
+        MDR_out,
         Src_A
     );
 
@@ -176,7 +176,7 @@ module cpu_add(
         ALUSrcB,
         B_Out,
         SignExtend16to32,
-        SignExtendShift,
+        SignExtendShiftLeft,
 	    Src_B
     );
 
@@ -186,8 +186,8 @@ module cpu_add(
         ALUOut,
         SeiLa,
         Seila2,
-        MDR,
-        EPC,
+        MDR_out,
+        EPC_out,
         PC_in
     );
 
@@ -204,7 +204,7 @@ module cpu_add(
         reset,
         SSCtrl,
         B_Out,
-        MDR,
+        MDR_out,
         Write_data_Mem
     );
 
@@ -328,6 +328,14 @@ module cpu_add(
         ALUOutCtrl,
         RES,
         ALUOut
+    );
+
+    Registrador EPC_(
+        clk,
+        reset,
+        EPCCtrl,
+        RES,
+        EPC_out
     );
 
     ctrl_unit Ctrl_(
