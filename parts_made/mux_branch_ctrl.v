@@ -3,8 +3,9 @@ module mux_branch_ctrl(
     input wire gt,
     input wire eq,
 
-    input wire PCWriteCond,
     input wire PCWrite,
+    input wire PCWriteCond,
+    
 
     output reg out
 );
