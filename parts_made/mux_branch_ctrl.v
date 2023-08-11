@@ -1,5 +1,5 @@
 module mux_branch_ctrl(
-    input wire [1:0]branch_ctrl,
+    input wire [1:0] branch_ctrl,
     input wire gt,
     input wire eq,
     input wire PCWrite,
