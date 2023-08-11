@@ -13,6 +13,8 @@ module cpu_add(
 
     // Control Wires
     wire PC_Write;
+    wire PCWriteCond,
+
     wire [1:0] ExcptCtrl;
     wire [2:0] IorD;
     wire [1:0] SSCtrl;
@@ -39,6 +41,9 @@ module cpu_add(
     wire EPCCtrl;
     wire [2:0] PCSource;
     wire [3:0] DataSrc;
+    wire [2:0]ShiftAmt;
+    wire ShiftSrc;
+    wire [1:0] Branch_Ctrl
 
     // Data Wires
     wire [31:0] PC_in;
@@ -59,6 +64,7 @@ module cpu_add(
     wire [15:0] OFFSET; // the immediate
     wire [4:0] RD = OFFSET[15:11];
     wire [5:0] Funct = OFFSET[5:0];
+    wire [5:0] shamt = OFFSET[10:6];
 
     wire [4:0] Write_Reg;
 
@@ -98,6 +104,9 @@ module cpu_add(
     wire [31:0] LS_out;
 
     wire [31:0] EPC_out;
+
+    wire [32:0] ShiftSrc_in;
+    wire[4:0] Shamt_in
 
     sign_extend_16_32 signExt16to32( // extends the immediate
         OFFSET,
@@ -363,6 +372,31 @@ module cpu_add(
         PCSource,
         DataSrc,
         reset
+    );
+    
+    mux_shift_amount mux_shift_amt(
+        B_Out,
+        shamt,
+        ShiftAmt,
+        Shamt_in
+
+    );
+
+    mux_2_to_1 mux_shift_src(
+        ShiftSrc,
+        A_Out,
+        B_Out,
+        ShiftSrc_in
+    );
+
+    mux_branch_ctrl mux_branch_ctrl (
+        Branch_Ctrl,
+        A_Out,
+        B_Out,
+        PCWrite,
+        PCWriteCond,
+        //Falta o sinal de controle de PC
+
     );
 
 endmodule
