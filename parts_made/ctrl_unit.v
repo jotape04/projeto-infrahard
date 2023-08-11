@@ -1625,7 +1625,7 @@ module ctrl_unit(
                         DataSrc= 4'b0000;
                         ShiftSrc= 1'b1;
                         ShiftAmt= 1'b1;
-                        ShiftCtrl= 3'100;
+                        ShiftCtrl= 3'b100;
                         Branch_Ctrl= 2'b00;
 
                         reset_out = 1'b0;
