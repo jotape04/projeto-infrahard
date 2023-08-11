@@ -64,7 +64,7 @@ module cpu_add(
     wire [15:0] OFFSET; // the immediate
     wire [4:0] RD = OFFSET[15:11];
     wire [5:0] Funct = OFFSET[5:0];
-    wire [5:0] shamt = OFFSET[10:6];
+    wire [4:0] shamt = OFFSET[10:6];
 
     wire [4:0] Write_Reg;
 
