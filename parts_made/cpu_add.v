@@ -38,8 +38,9 @@ module cpu_add(
     wire EPCCtrl;
     wire [2:0] PCSource;
     wire [3:0] DataSrc;
-    wire [2:0]ShiftAmt;
     wire ShiftSrc;
+    wire ShiftAmt;
+    wire [2:0] ShiftCtrl;
     wire [1:0] Branch_Ctrl;
 
     // Data Wires
@@ -108,7 +109,7 @@ module cpu_add(
 
     wire [31:0] EPC_out;
 
-    wire [32:0] ShiftSrc_in;
+    wire [31:0] ShiftSrc_in;
     wire[4:0] Shamt_in;
 
     sign_extend_16_32 signExt16to32(
