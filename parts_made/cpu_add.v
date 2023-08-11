@@ -27,7 +27,7 @@ module cpu_add(
     wire LoCtrl;
     wire MDRCtrl;
     wire IR_Write;
-    wire LSCtrl;
+    wire [1:0] LSCtrl;
     wire [1:0] RegDst;
     wire RegWrite;
     wire AB_Write;
@@ -78,14 +78,16 @@ module cpu_add(
     wire [31:0] Src_B;
     wire [31:0] SignExtend16to32; // the extended immediate
     wire [31:0] SignExtendShiftLeft;
+    wire [31:0] Sign_extend_1_32_out;
 
+    wire [31:0] Shift_left;
     wire [31:0] shift_left_2_pc_out;
     wire [31:0] sign_extend_4_32_out;
     wire [31:0] EPC;
+    wire [31:0] RegShift_out;
 
     wire [31:0] MultHi;
     wire [31:0] MultLo;
-    reg mult_end;
 
     wire [31:0] DIV_A_in;
     wire [31:0] DIV_B_in;
@@ -176,10 +178,10 @@ module cpu_add(
         LS_out,
         Hi_out,
         Lo_out,
-        Sign_extend_1_32,
-        Sign_extend_16_32,
+        Sign_extend_1_32_out,
+        SignExtend16to32,
         Shift_left,
-        Reg_shift,
+        RegShift_out,
         Write_data_Reg
     );
 
@@ -232,8 +234,7 @@ module cpu_add(
         A_Out,
         B_Out,
         MultHi,
-        MultLo,
-        mult_end
+        MultLo
     );
 
     div Div_(
@@ -419,6 +420,16 @@ module cpu_add(
         RT,
         OFFSET,
         shift_left_2_pc_out
+    );
+
+    sign_extend_1_32 sign_extend_1_32(
+        Lt,
+        Sign_extend_1_32_out 
+    );
+
+    shift_left_2 shift_left_2(
+        SignExtend16to32,
+        SignExtendShiftLeft
     );
 
 endmodule
