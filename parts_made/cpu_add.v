@@ -13,12 +13,25 @@ module cpu_add(
 
     // Control Wires
     wire PC_Write;
+    wire [1:0] ExcptCtrl;
     wire [2:0] IorD;
+    wire [1:0] SSCtrl;
+    wire mult_ctrl;
+    wire DIVASelect;
+    wire DIVBSelect;
+    wire RegAWrite;
+    wire RegBWrite;
+    wire MDSelect;
     wire MEM_write_or_read;
+    wire HiCtrl;
+    wire LoCtrl;
+    wire MDRCtrl;
     wire IR_Write;
+    wire LSCtrl;
     wire [1:0] RegDst;
     wire RegWrite;
-    wire AB_Write;
+    wire A_Write;
+    wire B_Write;
     wire [1:0] ALUSrcA;
     wire [1:0] ALUSrcB;
     wire [2:0] ALUCtrl;
@@ -66,18 +79,33 @@ module cpu_add(
     wire [31:0] Seila2;
     wire [31:0] EPC;
 
+    wire [31:0] MultHi;
+    wire [31:0] MultLo;
+
+    wire [31:0] DIV_A_in;
+    wire [31:0] DIV_B_in;
+    wire [31:0] DivHi;
+    wire [31:0] DivLo;
+    wire DIVQ;
+
+    wire [31:0] Hi_in;
+    wire [31:0] Hi_out;
+
+    wire [31:0] Lo_in;
+    wire [31:0] Lo_out;
+
+    wire [31:0] MDR_out;
+
+    wire [31:0] LS_out;
 
     sign_extend_16_32 signExt16to32( // extends the immediate
         OFFSET,
         SignExtend16to32
     );
 
-    Registrador ALUOUT(
-        clk,
-        reset,
-        ALUOutCtrl,
-        RES,
-        ALUOut
+    mux_excpt_ctrl MuxExcpt_(
+        ExcptCtrl,
+        Excpt
     );
 
     mux_iord MuxIord_(
@@ -91,6 +119,34 @@ module cpu_add(
         addr
     );
 
+    mux_2_to_1 MuxDivASelect_(
+        DIVASelect,
+        A_Out,
+        MDR,
+        DIV_A_in
+    );
+
+    mux_2_to_1 MuxDivBSelect_(
+        DIVBSelect,
+        B_Out,
+        MDR,
+        DIV_B_in
+    );
+
+    mux_2_to_1 MuxHi_(
+        MDSelect,
+        DivHi,
+        MultHi,
+        Hi_in,
+    );
+
+    mux_2_to_1 MuxLo_(
+        MDSelect,
+        DivLo,
+        MultLo,
+        Lo_in,
+    );
+
     mux_regdst MuxRegDst_(
         RegDst,
         RT,
@@ -101,6 +157,9 @@ module cpu_add(
     mux_datasrc MuxDataSrc_(
         DataSrc,
         ALUOut,
+        LS_out,
+        Hi_out,
+        Lo_out,
         Write_data_Reg
     );
 
@@ -139,12 +198,67 @@ module cpu_add(
         PC_out
     );
 
+    ss SS_(
+        clk,
+        reset,
+        SSCtrl,
+        B_Out,
+        MDR,
+        Write_data_Mem
+    );
+
+    mult Mult_(
+        clk,
+        reset,
+        mult_ctrl,
+        A_Out,
+        B_Out,
+        MultHi,
+        MultLo
+    );
+
+    div Div_(
+        clk,
+        reset,
+        RegAWrite,
+        RegBWrite,
+        DIV_A_in,
+        DIV_B_in,
+        DivHi,
+        DivLo,
+        DIVQ
+    );
+
     Memoria MEM_(
         addr,
         clk,
         MEM_write_or_read,
         Write_data_Mem,
         Mem_data
+    );
+
+    Registrador Hi_(
+        clk,
+        reset,
+        HiCtrl,
+        Hi_in,
+        Hi_out
+    );
+
+    Registrador Lo_(
+        clk,
+        reset,
+        LoCtrl,
+        Lo_in,
+        Lo_out
+    );
+
+    Registrador MDR_(
+        clk,
+        reset,
+        MDRCtrl,
+        Mem_data,
+        MDR_out
     );
 
     Instr_Reg IR_(
@@ -156,6 +270,14 @@ module cpu_add(
         RS,
         RT,
         OFFSET
+    );
+
+    Registrador LS_(
+        clk,
+        reset,
+        LSCtrl,
+        MDR_out,
+        LS_out
     );
 
     Banco_reg Regs_(
@@ -173,7 +295,7 @@ module cpu_add(
     Registrador A_(
         clk,
         reset,
-        AB_Write,
+        A_Write,
         Read_data1,
         A_Out
     );
@@ -181,7 +303,7 @@ module cpu_add(
     Registrador B_(
         clk,
         reset,
-        AB_Write,
+        B_Write,
         Read_data2,
         B_Out
     );
@@ -197,6 +319,14 @@ module cpu_add(
         Eq,
         Gt,
         Lt
+    );
+
+    Registrador ALUOUT(
+        clk,
+        reset,
+        ALUOutCtrl,
+        RES,
+        ALUOut
     );
 
     ctrl_unit Ctrl_(
