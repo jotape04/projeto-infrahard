@@ -1,7 +1,7 @@
 module mux_shift_amount(
+    input wire ShiftAmt,
     input wire [31:0]Reg_B,
     input wire [4:0]instruction_10_6
-    input wire ShiftAmt,
 
     output reg [4:0]out
 );

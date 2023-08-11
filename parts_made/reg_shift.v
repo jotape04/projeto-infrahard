@@ -5,7 +5,6 @@ module reg_shift(
     output reg [31:0] out
 );
 
-
     if(sel == 3'b011) 
     begin
 
@@ -24,6 +23,5 @@ module reg_shift(
         assign out = src >>> amt;
 
     end
-
 
 endmodule

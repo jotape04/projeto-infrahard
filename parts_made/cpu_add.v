@@ -373,20 +373,26 @@ module cpu_add(
         DataSrc,
         reset
     );
-    
-    mux_shift_amount mux_shift_amt(
-        B_Out,
-        shamt,
-        ShiftAmt,
-        Shamt_in
-
-    );
 
     mux_2_to_1 mux_shift_src(
         ShiftSrc,
         A_Out,
         B_Out,
         ShiftSrc_in
+    );
+    
+    mux_shift_amount mux_shift_amt(
+        ShiftAmt,
+        B_Out,
+        shamt,
+        Shamt_in
+    );
+
+    reg_shift RegShift_(
+        ShiftCtrl,
+        ShiftSrc_in,
+        Shamt_in,
+        RegShift_out
     );
 
     mux_branch_ctrl mux_branch_ctrl (
