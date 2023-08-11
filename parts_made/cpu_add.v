@@ -1,6 +1,6 @@
 module cpu_add(
     input clk,
-    input reset
+    input reset,
 );
 
     // Flags
@@ -12,9 +12,9 @@ module cpu_add(
     wire Ofw;
 
     // Control Wires
-    wire PC_Write;
+    wire PCWrite;
+    wire PCCtrl;
     wire PCWriteCond,
-
     wire [1:0] ExcptCtrl;
     wire [2:0] IorD;
     wire [1:0] SSCtrl;
@@ -108,7 +108,7 @@ module cpu_add(
     wire [32:0] ShiftSrc_in;
     wire[4:0] Shamt_in
 
-    sign_extend_16_32 signExt16to32( // extends the immediate
+    sign_extend_16_32 signExt16to32(
         OFFSET,
         SignExtend16to32
     );
@@ -203,7 +203,7 @@ module cpu_add(
     Registrador PC_(
         clk,
         reset,
-        PC_Write,
+        PCCtrl,
         PC_in,
         PC_out
     );
@@ -354,7 +354,7 @@ module cpu_add(
         Ofw,
         OPCODE,//
         Funct,
-        PC_Write,//
+        PCCtrl,//
         IorD,
         MEM_write_or_read,
         IR_Write,
@@ -393,12 +393,11 @@ module cpu_add(
 
     mux_branch_ctrl mux_branch_ctrl (
         Branch_Ctrl,
-        A_Out,
-        B_Out,
+        Gt,
+        Eq,
         PCWrite,
         PCWriteCond,
-        //Falta o sinal de controle de PC
-
+        PCCtrl
     );
 
     shift_left_2_PC shift_left_2_PC(
