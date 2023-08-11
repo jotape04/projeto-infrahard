@@ -30,8 +30,7 @@ module cpu_add(
     wire LSCtrl;
     wire [1:0] RegDst;
     wire RegWrite;
-    wire A_Write;
-    wire B_Write;
+    wire AB_Write;
     wire [1:0] ALUSrcA;
     wire [1:0] ALUSrcB;
     wire [2:0] ALUCtrl;
@@ -153,14 +152,14 @@ module cpu_add(
         MDSelect,
         DivHi,
         MultHi,
-        Hi_in,
+        Hi_in
     );
 
     mux_2_to_1 MuxLo_(
         MDSelect,
         DivLo,
         MultLo,
-        Lo_in,
+        Lo_in
     );
 
     mux_regdst MuxRegDst_(
@@ -176,6 +175,10 @@ module cpu_add(
         LS_out,
         Hi_out,
         Lo_out,
+        Sign_extend_1_32,
+        Sign_extend_16_32,
+        Shift_left,
+        Reg_shift,
         Write_data_Reg
     );
 
@@ -214,7 +217,7 @@ module cpu_add(
         PC_out
     );
 
-    ss SS_(
+    StoreSize SS_(
         SSCtrl,
         MDR_out,
         B_Out,
@@ -286,7 +289,7 @@ module cpu_add(
         OFFSET
     );
 
-    Registrador LS_(
+    LoadSize LS_(
         LSCtrl,
         MDR_out,
         LS_out
@@ -307,7 +310,7 @@ module cpu_add(
     Registrador A_(
         clk,
         reset,
-        A_Write,
+        AB_Write,
         Read_data1,
         A_Out
     );
@@ -315,7 +318,7 @@ module cpu_add(
     Registrador B_(
         clk,
         reset,
-        B_Write,
+        AB_Write,
         Read_data2,
         B_Out
     );
@@ -362,6 +365,7 @@ module cpu_add(
         Funct,
         PCWrite,//
         PCWriteCond,
+        Branch_Ctrl,
         IorD,
         MEM_write_or_read,
         IR_Write,

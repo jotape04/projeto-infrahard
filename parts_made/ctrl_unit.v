@@ -17,6 +17,7 @@ module ctrl_unit(
     // Controllers
     output reg PC_Write,
     output reg PC_WriteCond,
+    output reg [1:0] Branch_Ctrl,
     output reg [2:0] IorD,
     output reg MEM_write_or_read,
     output reg IR_Write,
@@ -100,6 +101,7 @@ module ctrl_unit(
 
                 PC_Write = 1'b0;
                 PC_WriteCond = 1'b0;
+                Branch_Ctrl = 2'b00;
                 MEM_write_or_read = 1'b0;
                 IR_Write = 1'b0;
                 RegWrite = 1'b0;
@@ -121,6 +123,7 @@ module ctrl_unit(
 
                 PC_Write = 1'b0;
                 PC_WriteCond = 1'b0;
+                Branch_Ctrl = 2'b00;
                 MEM_write_or_read = 1'b0;
                 IR_Write = 1'b0;
                 RegWrite = 1'b0;
@@ -146,6 +149,7 @@ module ctrl_unit(
 
                         PC_Write = 1'b0;
                         PC_WriteCond = 1'b0;
+                        Branch_Ctrl = 2'b00;
                         MEM_write_or_read = 1'b0;
                         IR_Write = 1'b0;
                         RegWrite = 1'b0;
@@ -168,6 +172,7 @@ module ctrl_unit(
 
                         PC_Write = 1'b1; //
                         PC_WriteCond = 1'b0;
+                        Branch_Ctrl = 2'b00;
                         MEM_write_or_read = 1'b0; //
                         IR_Write = 1'b1; //
                         RegWrite = 1'b0;
@@ -191,6 +196,7 @@ module ctrl_unit(
 
                         PC_Write = 1'b0;
                         PC_WriteCond = 1'b0;
+                        Branch_Ctrl = 2'b00;
                         MEM_write_or_read = 1'b0;
                         IR_Write = 1'b0;
                         RegWrite = 1'b0;
@@ -237,6 +243,7 @@ module ctrl_unit(
                        
                         PC_Write = 1'b0;
                         PC_WriteCond = 1'b0;
+                        Branch_Ctrl = 2'b00;
                         MEM_write_or_read = 1'b0;
                         IR_Write = 1'b0;
                         RegWrite = 1'b0;
@@ -260,6 +267,7 @@ module ctrl_unit(
 
                         PC_Write = 1'b0;
                         PC_WriteCond = 1'b0;
+                        Branch_Ctrl = 2'b00;
                         MEM_write_or_read = 1'b0;
                         IR_Write = 1'b0;
                         RegWrite = 1'b0;
@@ -281,6 +289,7 @@ module ctrl_unit(
 
                         PC_Write = 1'b0;
                         PC_WriteCond = 1'b0;
+                        Branch_Ctrl = 2'b00;
                         MEM_write_or_read = 1'b0;
                         IR_Write = 1'b0;
                         RegWrite = 1'b1; ///
@@ -300,6 +309,7 @@ module ctrl_unit(
                     else if (COUNTER == 3'b010) begin
                         PC_Write = 1'b0;
                         PC_WriteCond = 1'b0;
+                        Branch_Ctrl = 2'b00;
                         MEM_write_or_read = 1'b0;
                         IR_Write = 1'b0;
                         RegWrite = 1'b0; ///
@@ -324,6 +334,7 @@ module ctrl_unit(
 
                         PC_Write = 1'b0;
                         PC_WriteCond = 1'b0;
+                        Branch_Ctrl = 2'b00;
                         MEM_write_or_read = 1'b0;
                         IR_Write = 1'b0;
                         RegWrite = 1'b0;
@@ -345,6 +356,7 @@ module ctrl_unit(
 
                         PC_Write = 1'b0;
                         PC_WriteCond = 1'b0;
+                        Branch_Ctrl = 2'b00;
                         MEM_write_or_read = 1'b0;
                         IR_Write = 1'b0;
                         RegWrite = 1'b1;
@@ -364,6 +376,7 @@ module ctrl_unit(
                     else if (COUNTER == 3'b010) begin
                         PC_Write = 1'b0;
                         PC_WriteCond = 1'b0;
+                        Branch_Ctrl = 2'b00;
                         MEM_write_or_read = 1'b0;
                         IR_Write = 1'b0;
                         RegWrite = 1'b0;
@@ -388,6 +401,7 @@ module ctrl_unit(
 
                         PC_Write = 1'b0;
                         PC_WriteCond = 1'b0;
+                        Branch_Ctrl = 2'b00;
                         MEM_write_or_read = 1'b0;
                         IR_Write = 1'b0;
                         RegWrite = 1'b0;
@@ -411,6 +425,7 @@ module ctrl_unit(
 
                         PC_Write = 1'b0;
                         PC_WriteCond = 1'b0;
+                        Branch_Ctrl = 2'b00;
                         MEM_write_or_read = 1'b0;
                         IR_Write = 1'b0;
                         RegWrite = 1'b0;
@@ -432,6 +447,7 @@ module ctrl_unit(
 
                         PC_Write = 1'b0;
                         PC_WriteCond = 1'b0;
+                        Branch_Ctrl = 2'b00;
                         MEM_write_or_read = 1'b0;
                         IR_Write = 1'b0;
                         RegWrite = 1'b1; ///
@@ -451,6 +467,7 @@ module ctrl_unit(
                     else if (COUNTER == 3'b010) begin
                         PC_Write = 1'b0;
                         PC_WriteCond = 1'b0;
+                        Branch_Ctrl = 2'b00;
                         MEM_write_or_read = 1'b0;
                         IR_Write = 1'b0;
                         RegWrite = 1'b0; ///
@@ -475,6 +492,7 @@ module ctrl_unit(
 
                         PC_Write = 1'b0;
                         PC_WriteCond = 1'b0;
+                        Branch_Ctrl = 2'b00;
                         MEM_write_or_read = 1'b0;
                         IR_Write = 1'b0;
                         RegWrite = 1'b0;
@@ -496,6 +514,7 @@ module ctrl_unit(
 
                         PC_Write = 1'b0;
                         PC_WriteCond = 1'b0;
+                        Branch_Ctrl = 2'b00;
                         MEM_write_or_read = 1'b0;
                         IR_Write = 1'b0;
                         RegWrite = 1'b1; ///
@@ -515,6 +534,7 @@ module ctrl_unit(
                     else if (COUNTER == 3'b010) begin
                         PC_Write = 1'b0;
                         PC_WriteCond = 1'b0;
+                        Branch_Ctrl = 2'b00;
                         MEM_write_or_read = 1'b0;
                         IR_Write = 1'b0;
                         RegWrite = 1'b0; ///
