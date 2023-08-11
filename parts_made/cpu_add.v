@@ -80,7 +80,7 @@ module cpu_add(
     wire [31:0] SignExtendShiftLeft;
 
     wire [31:0] shift_left_2_pc_out;
-    wire [31:0] Seila2;
+    wire [31:0] sign_extend_4_32_out;
     wire [31:0] EPC;
 
     wire [31:0] MultHi;
@@ -111,6 +111,11 @@ module cpu_add(
     sign_extend_16_32 signExt16to32(
         OFFSET,
         SignExtend16to32
+    );
+
+    sign_extend_4_32 signExt4to32(
+        MDR_out,
+        sign_extend_4_32_out
     );
 
     mux_excpt_ctrl MuxExcpt_(
@@ -194,7 +199,7 @@ module cpu_add(
         RES,
         ALUOut,
         shift_left_2_pc_out,
-        Seila2,
+        sign_extend_4_32_out,
         MDR_out,
         EPC_out,
         PC_in
