@@ -86,6 +86,7 @@ module cpu_add(
 
     wire [31:0] MultHi;
     wire [31:0] MultLo;
+    reg mult_end;
 
     wire [31:0] DIV_A_in;
     wire [31:0] DIV_B_in;
@@ -228,7 +229,8 @@ module cpu_add(
         A_Out,
         B_Out,
         MultHi,
-        MultLo
+        MultLo,
+        mult_end
     );
 
     div Div_(
