@@ -5,23 +5,12 @@ module reg_shift(
     output reg [31:0] out
 );
 
-    if(sel == 3'b011) 
-    begin
-
-        assign out = src >> amt;
-
-    end 
-    else if(sel == 3'b010) 
-    begin
-
-        assign out = src << amt;
-
-    end
-    else if(sel == 3'b100) 
-    begin
-
-        assign out = src >>> amt;
-
+    always @(*) begin
+        case (sel)
+            3'b011: out <= src >> amt;
+            3'b010: out <= src << amt;
+            3'b100: out <= src >>> amt;
+        endcase
     end
 
 endmodule

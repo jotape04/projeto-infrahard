@@ -12,7 +12,7 @@ module shift_left_2_PC (
 
   wire [25:0] data_in;
 
-  assign data_in = {rs, rt, offset}
+  assign data_in = {rs, rt, offset};
 
   assign data_out = {pc_4most, data_in, {2{1'b0}}}; //concatena data_in (MSB) com o número 0 extendido para 2 bits (LSB)
 
