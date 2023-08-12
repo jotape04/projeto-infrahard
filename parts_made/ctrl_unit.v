@@ -85,16 +85,16 @@ module ctrl_unit(
     parameter ST_JAL = 6'd28;
     parameter ST_BREAK = 6'd29;
 
-    parameter ST_LW = 6'd25;
-    parameter ST_LH = 6'd26;
-    parameter ST_LB = 6'd27;
-    parameter ST_SW = 6'd28;
-    parameter ST_SH = 6'd29;
-    parameter ST_SB = 6'd30;
+    parameter ST_LW = 6'd30;
+    parameter ST_LH = 6'd31;
+    parameter ST_LB = 6'd32;
+    parameter ST_SW = 6'd33;
+    parameter ST_SH = 6'd34;
+    parameter ST_SB = 6'd35;
 
-    parameter ST_EXCP_OPCODE_INEXISTS = 6'd34;
-    parameter ST_EXCP_OVERFLOW = 6'd35;
-    parameter ST_EXCP_DIVZERO = 6'd36;
+    parameter ST_EXCP_OPCODE_INEXISTS = 6'd36;
+    parameter ST_EXCP_OVERFLOW = 6'd37;
+    parameter ST_EXCP_DIVZERO = 6'd38;
 
     // Different opcodes
     // R-type
