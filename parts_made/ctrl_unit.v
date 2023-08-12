@@ -1590,7 +1590,7 @@ module ctrl_unit(
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
                         RegDst= 2'b01;
-                        RegWrite= 1'b1;
+                        RegWrite= 1'b0;
                         AB_Write= 1'b0;
                         ALUSrcA= 2'b00;
                         ALUSrcB= 2'b00;
@@ -1612,7 +1612,6 @@ module ctrl_unit(
                     end
                 end
                 ST_MFLO: begin
-
                     if(COUNTER == 6'b000000) begin
                         STATE = ST_MFLO;
                         PCWrite= 1'b0;
@@ -1672,7 +1671,7 @@ module ctrl_unit(
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
                         RegDst= 2'b01;
-                        RegWrite= 1'b1;
+                        RegWrite= 1'b0;
                         AB_Write= 1'b0;
                         ALUSrcA= 2'b00;
                         ALUSrcB= 2'b00;
