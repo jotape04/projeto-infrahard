@@ -83,7 +83,7 @@ module cpu_add(
 
     wire [31:0] Shift_left;
     wire [31:0] shift_left_2_pc_out;
-    wire [31:0] sign_extend_4_32_out;
+    wire [31:0] sign_extend_8_32_out;
     wire [31:0] EPC;
     wire [31:0] RegShift_out;
 
@@ -117,9 +117,9 @@ module cpu_add(
         SignExtend16to32
     );
 
-    sign_extend_4_32 signExt4to32(
+    sign_extend_8_32 signExt8to32(
         MDR_out,
-        sign_extend_4_32_out
+        sign_extend_8_32_out
     );
 
     mux_excpt_ctrl MuxExcpt_(
@@ -207,7 +207,7 @@ module cpu_add(
         RES,
         ALUOut,
         shift_left_2_pc_out,
-        sign_extend_4_32_out,
+        sign_extend_8_32_out,
         MDR_out,
         EPC_out,
         PC_in
