@@ -3304,6 +3304,47 @@ module ctrl_unit(
                 //     end
 
                 // end
+
+                
+                ST_BREAK:begin
+                    STATE = ST_COMMON;
+                    COUNTER = 6'd0;
+
+                    PCWrite= 1'b1;
+                    PCWriteCond= 1'b0;
+                    ExcptCtrl= 2'b00;
+                    IorD= 3'b000; 
+                    SSCtrl= 2'b00;
+                    mult_ctrl= 1'b0;
+                    DIVASelect= 1'b0;
+                    DIVBSelect= 1'b0;
+                    div_ctrl= 1'b0;
+                    MDSelect= 1'b0;
+                    MEM_write_or_read= 1'b0; 
+                    HiCtrl= 1'b0;
+                    LoCtrl= 1'b0;
+                    MDRCtrl= 1'b0;
+                    IR_Write= 1'b0;
+                    LSCtrl= 2'b00;
+                    RegDst= 2'b00;
+                    RegWrite= 1'b0;
+                    AB_Write= 1'b0;
+                    ALUSrcA= 2'b00; // 
+                    ALUSrcB= 2'b01; // 
+                    ALUCtrl= 3'b010; // 
+                    ALUOutCtrl= 1'b0; // 
+                    EPCCtrl= 1'b0;
+                    PCSource= 3'b000;
+                    DataSrc= 4'b0000;
+                    ShiftSrc= 1'b0;
+                    ShiftAmt= 1'b0;
+                    ShiftCtrl= 3'b000;
+                    Branch_Ctrl= 2'b00;
+
+                    reset_out = 1'b0;
+
+
+                end
                 ST_LW, ST_LH, ST_LB, ST_SW, ST_SH, ST_SB: begin
                     if (COUNTER == 6'd0) begin // Mem[adress]; aluout = adress; adress = rs+signextend16to32(offset)
                         PCWrite= 1'b0;
