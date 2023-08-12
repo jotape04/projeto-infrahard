@@ -1257,6 +1257,9 @@ module ctrl_unit(
                         COUNTER = COUNTER + 1;
                     end
                 end
+
+                //div está guardando o quociente e resto em hi e lo
+                // *fazer registradores dedicados* !!!
                 ST_DIV: begin
                     if(COUNTER == 6'b100001) begin     // saindo da divisao
                         PCWrite= 1'b0;
@@ -1267,7 +1270,7 @@ module ctrl_unit(
                         mult_ctrl= 1'b0;
                         DIVASelect= 1'b0;
                         DIVBSelect= 1'b0;
-                        div_ctrl= 1'b1;
+                        div_ctrl= 1'b1;   // ativado
                         MDSelect= 1'b0;
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b1;
@@ -1305,7 +1308,7 @@ module ctrl_unit(
                         mult_ctrl= 1'b0;
                         DIVASelect= 1'b0;
                         DIVBSelect= 1'b0;
-                        div_ctrl= 1'b0;
+                        div_ctrl= 1'b1; // ativado
                         MDSelect= 1'b0;
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b1;
