@@ -1932,9 +1932,9 @@ module ctrl_unit(
                         EPCCtrl= 1'b0;
                         PCSource= 3'b000;
                         DataSrc= 4'b0000;
-                        ShiftSrc= 1'b1;
-                        ShiftAmt= 1'b1;
-                        ShiftCtrl= 3'b001;
+                        ShiftSrc= 1'b1; //
+                        ShiftAmt= 1'b1; //
+                        ShiftCtrl= 3'b001; //
                         Branch_Ctrl= 2'b00;
 
                         reset_out = 1'b0;
@@ -1962,7 +1962,7 @@ module ctrl_unit(
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
                         RegDst= 2'b00;
-                        RegWrite= 1'b1;
+                        RegWrite= 1'b0; // 
                         AB_Write= 1'b0;
                         ALUSrcA= 2'b00;
                         ALUSrcB= 2'b00;
@@ -1971,9 +1971,9 @@ module ctrl_unit(
                         EPCCtrl= 1'b0;
                         PCSource= 3'b000;
                         DataSrc= 4'b0000;
-                        ShiftSrc= 1'b1;
-                        ShiftAmt= 1'b1;
-                        ShiftCtrl= 3'b011;
+                        ShiftSrc= 1'b1; //
+                        ShiftAmt= 1'b1; // 
+                        ShiftCtrl= 3'b011; //
                         Branch_Ctrl= 2'b00;
 
                         reset_out = 1'b0;
@@ -2000,62 +2000,23 @@ module ctrl_unit(
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
                         RegDst= 2'b01;
-                        RegWrite= 1'b1;
-                        AB_Write= 1'b1;
+                        RegWrite= 1'b1; //
+                        AB_Write= 1'b0;
                         ALUSrcA= 2'b00;
                         ALUSrcB= 2'b00;
                         ALUCtrl= 3'b000;
                         ALUOutCtrl= 1'b0;
                         EPCCtrl= 1'b0;
                         PCSource= 3'b000;
-                        DataSrc= 4'b0111;
-                        ShiftSrc= 1'b1;
-                        ShiftAmt= 1'b1;
-                        ShiftCtrl= 3'b011;
+                        DataSrc= 4'b0111; //
+                        ShiftSrc= 1'b1; //
+                        ShiftAmt= 1'b1; //
+                        ShiftCtrl= 3'b011; //
                         Branch_Ctrl= 2'b00;
 
                         reset_out = 1'b0;
-                        COUNTER = COUNTER + 1;
-
-                    end
-                    else if(COUNTER == 6'b000011) begin
-                        STATE = ST_SRL;
-                        PCWrite= 1'b0;
-                        PCWriteCond= 1'b0;
-                        ExcptCtrl= 2'b00;
-                        IorD= 3'b000;
-                        SSCtrl= 2'b00;
-                        mult_ctrl= 1'b0;
-                        DIVASelect= 1'b0;
-                        DIVBSelect= 1'b0;
-                        div_ctrl= 1'b0;
-                        MDSelect= 1'b0;
-                        MEM_write_or_read= 1'b0;
-                        HiCtrl= 1'b0;
-                        LoCtrl= 1'b0;
-                        DivQuotCtrl= 1'b0;
-                        DivRemCtrl= 1'b0;
-                        MDRCtrl= 1'b0;
-                        IR_Write= 1'b0;
-                        LSCtrl= 2'b00;
-                        RegDst= 2'b01;
-                        RegWrite= 1'b1;
-                        AB_Write= 1'b1;
-                        ALUSrcA= 2'b00;
-                        ALUSrcB= 2'b00;
-                        ALUCtrl= 3'b000;
-                        ALUOutCtrl= 1'b0;
-                        EPCCtrl= 1'b0;
-                        PCSource= 3'b000;
-                        DataSrc= 4'b0111;
-                        ShiftSrc= 1'b1;
-                        ShiftAmt= 1'b1;
-                        ShiftCtrl= 3'b011;
-                        Branch_Ctrl= 2'b00;
-
-                        reset_out = 1'b0;
+                        COUNTER = 6'd0;
                         STATE = ST_COMMON;
-                        COUNTER = 6'b000000;
                     end
                     
                 end
@@ -2082,7 +2043,7 @@ module ctrl_unit(
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
                         RegDst= 2'b00;
-                        RegWrite= 1'b0;
+                        RegWrite= 1'b0; //
                         AB_Write= 1'b0;
                         ALUSrcA= 2'b00;
                         ALUSrcB= 2'b00;
@@ -2091,9 +2052,9 @@ module ctrl_unit(
                         EPCCtrl= 1'b0;
                         PCSource= 3'b000;
                         DataSrc= 4'b0000;
-                        ShiftSrc= 1'b1;
-                        ShiftAmt= 1'b1;
-                        ShiftCtrl= 3'b001;
+                        ShiftSrc= 1'b1; //
+                        ShiftAmt= 1'b1; //
+                        ShiftCtrl= 3'b001; //
                         Branch_Ctrl= 2'b00;
 
                         reset_out = 1'b0;
@@ -2121,7 +2082,7 @@ module ctrl_unit(
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
                         RegDst= 2'b00;
-                        RegWrite= 1'b1;
+                        RegWrite= 1'b0; //
                         AB_Write= 1'b0;
                         ALUSrcA= 2'b00;
                         ALUSrcB= 2'b00;
@@ -2130,8 +2091,8 @@ module ctrl_unit(
                         EPCCtrl= 1'b0;
                         PCSource= 3'b000;
                         DataSrc= 4'b0000;
-                        ShiftSrc= 1'b1;
-                        ShiftAmt= 1'b1;
+                        ShiftSrc= 1'b1; //
+                        ShiftAmt= 1'b1; //
                         ShiftCtrl= 3'b010;
                         Branch_Ctrl= 2'b00;
 
@@ -2158,7 +2119,7 @@ module ctrl_unit(
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
-                        RegDst= 2'b01;
+                        RegDst= 2'b01; //
                         RegWrite= 1'b1;
                         AB_Write= 1'b1;
                         ALUSrcA= 2'b00;
@@ -2167,7 +2128,7 @@ module ctrl_unit(
                         ALUOutCtrl= 1'b0;
                         EPCCtrl= 1'b0;
                         PCSource= 3'b000;
-                        DataSrc= 4'b0111;
+                        DataSrc= 4'b0111; //
                         ShiftSrc= 1'b1;
                         ShiftAmt= 1'b1;
                         ShiftCtrl= 3'b010;
@@ -2211,9 +2172,9 @@ module ctrl_unit(
                         EPCCtrl= 1'b0;
                         PCSource= 3'b000;
                         DataSrc= 4'b0000;
-                        ShiftSrc= 1'b1;
-                        ShiftAmt= 1'b1;
-                        ShiftCtrl= 3'b001;
+                        ShiftSrc= 1'b1; //
+                        ShiftAmt= 1'b1; //
+                        ShiftCtrl= 3'b001; //
                         Branch_Ctrl= 2'b00;
 
                         reset_out = 1'b0;
@@ -2240,7 +2201,7 @@ module ctrl_unit(
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
                         RegDst= 2'b00;
-                        RegWrite= 1'b1;
+                        RegWrite= 1'b0;
                         AB_Write= 1'b0;
                         ALUSrcA= 2'b00;
                         ALUSrcB= 2'b00;
@@ -2249,9 +2210,9 @@ module ctrl_unit(
                         EPCCtrl= 1'b0;
                         PCSource= 3'b000;
                         DataSrc= 4'b0000;
-                        ShiftSrc= 1'b1;
-                        ShiftAmt= 1'b1;
-                        ShiftCtrl= 3'b100;
+                        ShiftSrc= 1'b1; //
+                        ShiftAmt= 1'b1; //
+                        ShiftCtrl= 3'b100; //
                         Branch_Ctrl= 2'b00;
 
                         reset_out = 1'b0;
@@ -2278,62 +2239,23 @@ module ctrl_unit(
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
                         RegDst= 2'b01;
-                        RegWrite= 1'b1;
-                        AB_Write= 1'b1;
+                        RegWrite= 1'b1; //
+                        AB_Write= 1'b0;
                         ALUSrcA= 2'b00;
                         ALUSrcB= 2'b00;
                         ALUCtrl= 3'b000;
                         ALUOutCtrl= 1'b0;
                         EPCCtrl= 1'b0;
                         PCSource= 3'b000;
-                        DataSrc= 4'b0111;
-                        ShiftSrc= 1'b1;
-                        ShiftAmt= 1'b1;
-                        ShiftCtrl= 3'b100;
+                        DataSrc= 4'b0111; //
+                        ShiftSrc= 1'b1; //
+                        ShiftAmt= 1'b1; //
+                        ShiftCtrl= 3'b100; //
                         Branch_Ctrl= 2'b00;
 
                         reset_out = 1'b0;
-                        COUNTER = COUNTER + 1;
-                    end
-                    else if(COUNTER == 6'b000011) begin
-                        STATE = ST_SRA;
-
-                        PCWrite= 1'b0;
-                        PCWriteCond= 1'b0;
-                        ExcptCtrl= 2'b00;
-                        IorD= 3'b000;
-                        SSCtrl= 2'b00;
-                        mult_ctrl= 1'b0;
-                        DIVASelect= 1'b0;
-                        DIVBSelect= 1'b0;
-                        div_ctrl= 1'b0;
-                        MDSelect= 1'b0;
-                        MEM_write_or_read= 1'b0;
-                        HiCtrl= 1'b0;
-                        LoCtrl= 1'b0;
-                        DivQuotCtrl= 1'b0;
-                        DivRemCtrl= 1'b0;
-                        MDRCtrl= 1'b0;
-                        IR_Write= 1'b0;
-                        LSCtrl= 2'b00;
-                        RegDst= 2'b01;
-                        RegWrite= 1'b1;
-                        AB_Write= 1'b1;
-                        ALUSrcA= 2'b00;
-                        ALUSrcB= 2'b00;
-                        ALUCtrl= 3'b000;
-                        ALUOutCtrl= 1'b0;
-                        EPCCtrl= 1'b0;
-                        PCSource= 3'b000;
-                        DataSrc= 4'b0111;
-                        ShiftSrc= 1'b1;
-                        ShiftAmt= 1'b1;
-                        ShiftCtrl= 3'b100;
-                        Branch_Ctrl= 2'b00;
-
-                        reset_out = 1'b0;
+                        COUNTER = 6'd0;
                         STATE = ST_COMMON;
-                        COUNTER = 6'b000000;
                     end
                 end              
                 ST_SLLV: begin
@@ -2368,9 +2290,9 @@ module ctrl_unit(
                         EPCCtrl= 1'b0;
                         PCSource= 3'b000;
                         DataSrc= 4'b0000;
-                        ShiftSrc= 1'b0;
-                        ShiftAmt= 1'b0;
-                        ShiftCtrl= 3'b001;
+                        ShiftSrc= 1'b0; //
+                        ShiftAmt= 1'b0; //
+                        ShiftCtrl= 3'b001; //
                         Branch_Ctrl= 2'b00;
 
                         reset_out = 1'b0;
@@ -2398,8 +2320,8 @@ module ctrl_unit(
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
                         RegDst= 2'b00;
-                        RegWrite= 1'b1;
-                        AB_Write= 1'b1;
+                        RegWrite= 1'b0;
+                        AB_Write= 1'b0;
                         ALUSrcA= 2'b00;
                         ALUSrcB= 2'b00;
                         ALUCtrl= 3'b000;
@@ -2407,9 +2329,9 @@ module ctrl_unit(
                         EPCCtrl= 1'b0;
                         PCSource= 3'b000;
                         DataSrc= 4'b0000;
-                        ShiftSrc= 1'b0;
-                        ShiftAmt= 1'b0;
-                        ShiftCtrl= 3'b010;
+                        ShiftSrc= 1'b0; //
+                        ShiftAmt= 1'b0; //
+                        ShiftCtrl= 3'b010; //
                         Branch_Ctrl= 2'b00;
 
                         reset_out = 1'b0;
@@ -2436,18 +2358,18 @@ module ctrl_unit(
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
                         RegDst= 2'b01;
-                        RegWrite= 1'b1;
-                        AB_Write= 1'b1;
+                        RegWrite= 1'b1; //
+                        AB_Write= 1'b0;
                         ALUSrcA= 2'b00;
                         ALUSrcB= 2'b00;
                         ALUCtrl= 3'b000;
                         ALUOutCtrl= 1'b0;
                         EPCCtrl= 1'b0;
                         PCSource= 3'b000;
-                        DataSrc= 4'b0111;
-                        ShiftSrc= 1'b0;
-                        ShiftAmt= 1'b0;
-                        ShiftCtrl= 3'b010;
+                        DataSrc= 4'b0111; //
+                        ShiftSrc= 1'b0; //
+                        ShiftAmt= 1'b0; //
+                        ShiftCtrl= 3'b010; //
                         Branch_Ctrl= 2'b00;
 
                         reset_out = 1'b0;
@@ -2489,9 +2411,9 @@ module ctrl_unit(
                         EPCCtrl= 1'b0;
                         PCSource= 3'b000;
                         DataSrc= 4'b0000;
-                        ShiftSrc= 1'b0;
-                        ShiftAmt= 1'b0;
-                        ShiftCtrl= 3'b001;
+                        ShiftSrc= 1'b0; //
+                        ShiftAmt= 1'b0; //
+                        ShiftCtrl= 3'b001; // 
                         Branch_Ctrl= 2'b00;
 
                         reset_out = 1'b0;
@@ -2518,18 +2440,18 @@ module ctrl_unit(
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
                         RegDst= 2'b00;
-                        RegWrite= 1'b1;
-                        AB_Write= 1'b1;
+                        RegWrite= 1'b0; //
+                        AB_Write= 1'b0;
                         ALUSrcA= 2'b00;
                         ALUSrcB= 2'b00;
                         ALUCtrl= 3'b000;
                         ALUOutCtrl= 1'b0;
                         EPCCtrl= 1'b0;
                         PCSource= 3'b000;
-                        DataSrc= 4'b0000;
-                        ShiftSrc= 1'b0;
-                        ShiftAmt= 1'b0;
-                        ShiftCtrl= 3'b100;
+                        DataSrc= 4'b0000; //
+                        ShiftSrc= 1'b0; //
+                        ShiftAmt= 1'b0; //
+                        ShiftCtrl= 3'b100; //
                         Branch_Ctrl= 2'b00;
 
                         reset_out = 1'b0;
@@ -2555,63 +2477,24 @@ module ctrl_unit(
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
-                        RegDst= 2'b01;
-                        RegWrite= 1'b1;
-                        AB_Write= 1'b1;
+                        RegDst= 2'b01; //
+                        RegWrite= 1'b1; //
+                        AB_Write= 1'b0; //
                         ALUSrcA= 2'b00;
                         ALUSrcB= 2'b00;
                         ALUCtrl= 3'b000;
                         ALUOutCtrl= 1'b0;
                         EPCCtrl= 1'b0;
                         PCSource= 3'b000;
-                        DataSrc= 4'b0111;
-                        ShiftSrc= 1'b0;
-                        ShiftAmt= 1'b0;
-                        ShiftCtrl= 3'b100;
+                        DataSrc= 4'b0111; //
+                        ShiftSrc= 1'b0; //
+                        ShiftAmt= 1'b0; //
+                        ShiftCtrl= 3'b100; //
                         Branch_Ctrl= 2'b00;
 
                         reset_out = 1'b0;
-                        COUNTER = COUNTER + 1;
-                    end
-                    else if(COUNTER == 6'b000011)begin
-                        STATE = ST_SRAV;
-
-                        PCWrite= 1'b0;
-                        PCWriteCond= 1'b0;
-                        ExcptCtrl= 2'b00;
-                        IorD= 3'b000;
-                        SSCtrl= 2'b00;
-                        mult_ctrl= 1'b0;
-                        DIVASelect= 1'b0;
-                        DIVBSelect= 1'b0;
-                        div_ctrl= 1'b0;
-                        MDSelect= 1'b0;
-                        MEM_write_or_read= 1'b0;
-                        HiCtrl= 1'b0;
-                        LoCtrl= 1'b0;
-                        DivQuotCtrl= 1'b0;
-                        DivRemCtrl= 1'b0;
-                        MDRCtrl= 1'b0;
-                        IR_Write= 1'b0;
-                        LSCtrl= 2'b00;
-                        RegDst= 2'b01;
-                        RegWrite= 1'b1;
-                        AB_Write= 1'b1;
-                        ALUSrcA= 2'b00;
-                        ALUSrcB= 2'b00;
-                        ALUCtrl= 3'b000;
-                        ALUOutCtrl= 1'b0;
-                        EPCCtrl= 1'b0;
-                        PCSource= 3'b000;
-                        DataSrc= 4'b0111;
-                        ShiftSrc= 1'b0;
-                        ShiftAmt= 1'b0;
-                        ShiftCtrl= 3'b100;
-                        Branch_Ctrl= 2'b00;
-
-                        reset_out = 1'b0;
+                        COUNTER = 6'd0;
                         STATE = ST_COMMON;
-                        COUNTER = 6'b000000;
                     end
                 end
                 ST_SLT: begin
