@@ -1212,43 +1212,81 @@ module ctrl_unit(
                     COUNTER = 6'b000000;
                 end
                 ST_MFHI: begin
-                    STATE = ST_MFHI;
-        
-                    PCWrite= 1'b0;
-                    PCWriteCond= 1'b0;
-                    ExcptCtrl= 2'b00;
-                    IorD= 3'b000;
-                    SSCtrl= 2'b00;
-                    mult_ctrl= 1'b0;
-                    DIVASelect= 1'b0;
-                    DIVBSelect= 1'b0;
-                    div_ctrl= 1'b0;
-                    MDSelect= 1'b0;
-                    MEM_write_or_read= 1'b0;
-                    HiCtrl= 1'b0;
-                    LoCtrl= 1'b0;
-                    MDRCtrl= 1'b0;
-                    IR_Write= 1'b0;
-                    LSCtrl= 2'b00;
-                    RegDst= 2'b01;
-                    RegWrite= 1'b1;
-                    AB_Write= 1'b0;
-                    ALUSrcA= 2'b00;
-                    ALUSrcB= 2'b00;
-                    ALUCtrl= 3'b000;
-                    ALUOutCtrl= 1'b0;
-                    EPCCtrl= 1'b0;
-                    PCSource= 3'b000;
-                    DataSrc= 4'b0010;
-                    ShiftSrc= 1'b0;
-                    ShiftAmt= 1'b0;
-                    ShiftCtrl= 3'b000;
-                    Branch_Ctrl= 2'b00;
+                    if(COUNTER == 6'b000000) begin
+                        STATE = ST_MFHI;
+                        PCWrite= 1'b0;
+                        PCWriteCond= 1'b0;
+                        ExcptCtrl= 2'b00;
+                        IorD= 3'b000;
+                        SSCtrl= 2'b00;
+                        mult_ctrl= 1'b0;
+                        DIVASelect= 1'b0;
+                        DIVBSelect= 1'b0;
+                        div_ctrl= 1'b0;
+                        MDSelect= 1'b0;
+                        MEM_write_or_read= 1'b0;
+                        HiCtrl= 1'b0;
+                        LoCtrl= 1'b0;
+                        MDRCtrl= 1'b0;
+                        IR_Write= 1'b0;
+                        LSCtrl= 2'b00;
+                        RegDst= 2'b01;
+                        RegWrite= 1'b1;
+                        AB_Write= 1'b0;
+                        ALUSrcA= 2'b00;
+                        ALUSrcB= 2'b00;
+                        ALUCtrl= 3'b000;
+                        ALUOutCtrl= 1'b0;
+                        EPCCtrl= 1'b0;
+                        PCSource= 3'b000;
+                        DataSrc= 4'b0010;
+                        ShiftSrc= 1'b0;
+                        ShiftAmt= 1'b0;
+                        ShiftCtrl= 3'b000;
+                        Branch_Ctrl= 2'b00;
 
-                    reset_out = 1'b0;
-                    STATE = ST_COMMON;
-                    COUNTER = 6'b000000;
+                        reset_out = 1'b0;
+                        COUNTER = COUNTER + 1;
+                        
+                    end
+                        if(COUNTER == 6'b000001)begin
+                            PCWrite= 1'b0;
+                            PCWriteCond= 1'b0;
+                            ExcptCtrl= 2'b00;
+                            IorD= 3'b000;
+                            SSCtrl= 2'b00;
+                            mult_ctrl= 1'b0;
+                            DIVASelect= 1'b0;
+                            DIVBSelect= 1'b0;
+                            div_ctrl= 1'b0;
+                            MDSelect= 1'b0;
+                            MEM_write_or_read= 1'b0;
+                            HiCtrl= 1'b0;
+                            LoCtrl= 1'b0;
+                            MDRCtrl= 1'b0;
+                            IR_Write= 1'b0;
+                            LSCtrl= 2'b00;
+                            RegDst= 2'b01;
+                            RegWrite= 1'b1;
+                            AB_Write= 1'b0;
+                            ALUSrcA= 2'b00;
+                            ALUSrcB= 2'b00;
+                            ALUCtrl= 3'b000;
+                            ALUOutCtrl= 1'b0;
+                            EPCCtrl= 1'b0;
+                            PCSource= 3'b000;
+                            DataSrc= 4'b0010;
+                            ShiftSrc= 1'b0;
+                            ShiftAmt= 1'b0;
+                            ShiftCtrl= 3'b000;
+                            Branch_Ctrl= 2'b00;
 
+                            reset_out = 1'b0;
+
+                            STATE = ST_COMMON;
+                            COUNTER = 6'b000000;
+
+                        end
                 end
                 ST_MFLO: begin
             
