@@ -3,7 +3,7 @@ module StoreSize(
     input  wire [1:0]  StoreSize_Ctrl,
     input  wire [31:0] data_in,
     input  wire [31:0] B,
-    output wire [31:0] write_data
+    output reg [31:0] write_data
 
 );
 
