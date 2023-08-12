@@ -1182,7 +1182,7 @@ module ctrl_unit(
                     end
                 end
                 ST_MULT:begin
-                    if(COUNTER == 6'b100001) begin //counter == 33 sai da multiplicacao e escreve em hi e lo        
+                    if(COUNTER == 6'b100001) begin //counter == 33 sai da multiplicacao e escreve em hi e lo      
                         PCWrite= 1'b0;
                         PCWriteCond= 1'b0;
                         ExcptCtrl= 2'b00;
@@ -1955,6 +1955,7 @@ module ctrl_unit(
                         STATE = ST_COMMON;
                         COUNTER = 6'b000000;
                     end
+                    
                 end
                 ST_SLL: begin
                     if(COUNTER == 6'b000000) begin
