@@ -1258,6 +1258,8 @@ module ctrl_unit(
                     end
                 end
 
+                //div está guardando o quociente e resto em hi e lo
+                // *fazer registradores dedicados* !!!
                 ST_DIV: begin
                     if(COUNTER == 6'b100001) begin     // saindo da divisao
                         PCWrite= 1'b0;
