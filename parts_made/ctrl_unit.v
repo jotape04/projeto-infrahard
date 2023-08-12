@@ -1314,6 +1314,8 @@ module ctrl_unit(
                 // *fazer registradores dedicados* !!!
                 ST_DIV: begin
                     if(COUNTER == 6'b100001) begin     // saindo da divisao
+                        STATE = ST_COMMON;
+                        
                         PCWrite= 1'b0;
                         PCWriteCond= 1'b0;
                         ExcptCtrl= 2'b00;
@@ -3322,6 +3324,178 @@ module ctrl_unit(
                         STATE = ST_COMMON;
                     end
                 end
+                // ST_DIVM:begin
+                //     if(COUNTER == 6'd0 || COUNTER == 6'd1)begin
+                //         STATE = ST_DIVM;
+
+                //         PCWrite= 1'b0;
+                //         PCWriteCond= 1'b0;
+                //         ExcptCtrl= 2'b00;
+                //         IorD= 3'b100;
+                //         SSCtrl= 2'b00;
+                //         mult_ctrl= 1'b0;
+                //         DIVASelect= 1'b0;
+                //         DIVBSelect= 1'b0;
+                //         div_ctrl= 1'b0;
+                //         MDSelect= 1'b0;
+                //         MEM_write_or_read= 1'b0;
+                //         HiCtrl= 1'b0;
+                //         LoCtrl= 1'b0;
+                //         DivQuotCtrl= 1'b0;
+                //         DivRemCtrl= 1'b0;
+                //         MDRCtrl= 1'b;
+                //         IR_Write= 1'b0;
+                //         LSCtrl= 2'b00;
+                //         RegDst= 2'b00;
+                //         RegWrite= 1'b0;
+                //         AB_Write= 1'b0;
+                //         ALUSrcA= 2'b00;
+                //         ALUSrcB= 2'b00;
+                //         ALUCtrl= 3'b000;
+                //         ALUOutCtrl= 1'b0;
+                //         EPCCtrl= 1'b0;
+                //         PCSource= 3'b000;
+                //         DataSrc= 4'b0000;
+                //         ShiftSrc= 1'b0;
+                //         ShiftAmt= 1'b0;
+                //         ShiftCtrl= 3'b000;
+                //         Branch_Ctrl= 2'b00;
+
+                //         reset_out = 1'b0;
+                //         COUNTER = COUNTER + 1;
+                //     end
+                //     else if(COUNTER == 6'd2 || COUNTER == 6'd3)begin
+                //         STATE = ST_DIVM;
+                        
+                //         PCWrite= 1'b0;
+                //         PCWriteCond= 1'b0;
+                //         ExcptCtrl= 2'b00;
+                //         IorD= 3'b101;
+                //         SSCtrl= 2'b00;
+                //         mult_ctrl= 1'b0;
+                //         DIVASelect= 1'b1;
+                //         DIVBSelect= 1'b1;
+                //         div_ctrl= 1'b0;
+                //         MDSelect= 1'b0;
+                //         MEM_write_or_read= 1'b0;
+                //         HiCtrl= 1'b0;
+                //         LoCtrl= 1'b0;
+                //         DivQuotCtrl= 1'b0;
+                //         DivRemCtrl= 1'b0;
+                //         MDRCtrl= 1'b0;
+                //         IR_Write= 1'b0;
+                //         LSCtrl= 2'b00;
+                //         RegDst= 2'b00;
+                //         RegWrite= 1'b0;
+                //         AB_Write= 1'b0;
+                //         ALUSrcA= 2'b00;
+                //         ALUSrcB= 2'b00;
+                //         ALUCtrl= 3'b000;
+                //         ALUOutCtrl= 1'b0;
+                //         EPCCtrl= 1'b0;
+                //         PCSource= 3'b000;
+                //         DataSrc= 4'b0000;
+                //         ShiftSrc= 1'b0;
+                //         ShiftAmt= 1'b0;
+                //         ShiftCtrl= 3'b000;
+                //         Branch_Ctrl= 2'b00;
+
+                //         reset_out = 1'b1;
+                //         COUNTER = COUNTER + 1;
+                //     end
+                //     else if(COUNTER < 6'd37)begin
+                //         STATE = ST_DIVM;
+                        
+                //         PCWrite= 1'b0;
+                //         PCWriteCond= 1'b0;
+                //         ExcptCtrl= 2'b00;
+                //         IorD= 3'b101;
+                //         SSCtrl= 2'b00;
+                //         mult_ctrl= 1'b0;
+                //         DIVASelect= 1'b1;
+                //         DIVBSelect= 1'b1;
+                //         div_ctrl= 1'b1;
+                //         MDSelect= 1'b0;
+                //         MEM_write_or_read= 1'b0;
+                //         HiCtrl= 1'b0;
+                //         LoCtrl= 1'b0;
+                //         DivQuotCtrl= 1'b0;
+                //         DivRemCtrl= 1'b0;
+                //         MDRCtrl= 1'b0;
+                //         IR_Write= 1'b0;
+                //         LSCtrl= 2'b00;
+                //         RegDst= 2'b00;
+                //         RegWrite= 1'b0;
+                //         AB_Write= 1'b0;
+                //         ALUSrcA= 2'b00;
+                //         ALUSrcB= 2'b00;
+                //         ALUCtrl= 3'b000;
+                //         ALUOutCtrl= 1'b0;
+                //         EPCCtrl= 1'b0;
+                //         PCSource= 3'b000;
+                //         DataSrc= 4'b0000;
+                //         ShiftSrc= 1'b0;
+                //         ShiftAmt= 1'b0;
+                //         ShiftCtrl= 3'b000;
+                //         Branch_Ctrl= 2'b00;
+
+                //         reset_out = 1'b1;
+                //         COUNTER = COUNTER + 1;
+
+                //         if(DIVQ)begin
+                //             div_ctrl= 1'b0;
+                //             RegDst= 2'b00; ///
+                //             RegWrite= 1'b0; ///
+                //             ALUSrcA= 2'b00; ///
+                //             ALUCtrl= 3'b000; ///
+                //             ALUSrcB= 2'b00;
+                //             ALUOutCtrl= 1'b0;
+
+                //             STATE = ST_EXCP_DIVZERO;
+                //             COUNTER = 6'b000000;
+                //         end
+                //     end
+                //     else if(COUNTER == 6'd37)begin
+                //         STATE = ST_COMMON;
+                        
+                //         PCWrite= 1'b0;
+                //         PCWriteCond= 1'b0;
+                //         ExcptCtrl= 2'b00;
+                //         IorD= 3'b101;
+                //         SSCtrl= 2'b00;
+                //         mult_ctrl= 1'b0;
+                //         DIVASelect= 1'b1;
+                //         DIVBSelect= 1'b1;
+                //         div_ctrl= 1'b1;
+                //         MDSelect= 1'b0;
+                //         MEM_write_or_read= 1'b0;
+                //         HiCtrl= 1'b0;
+                //         LoCtrl= 1'b0;
+                //         DivQuotCtrl= 1'b1;
+                //         DivRemCtrl= 1'b1;
+                //         MDRCtrl= 1'b0;
+                //         IR_Write= 1'b0;
+                //         LSCtrl= 2'b00;
+                //         RegDst= 2'b00;
+                //         RegWrite= 1'b0;
+                //         AB_Write= 1'b0;
+                //         ALUSrcA= 2'b00;
+                //         ALUSrcB= 2'b00;
+                //         ALUCtrl= 3'b000;
+                //         ALUOutCtrl= 1'b0;
+                //         EPCCtrl= 1'b0;
+                //         PCSource= 3'b000;
+                //         DataSrc= 4'b0000;
+                //         ShiftSrc= 1'b0;
+                //         ShiftAmt= 1'b0;
+                //         ShiftCtrl= 3'b000;
+                //         Branch_Ctrl= 2'b00;
+
+                //         reset_out = 1'b1;
+                //         COUNTER = 6'b000000;
+                //     end
+
+                // end
 	        endcase
         end      
     end
