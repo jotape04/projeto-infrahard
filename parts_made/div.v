@@ -1,111 +1,145 @@
-module div(
+module div(Lo
     input wire clk,
     input wire reset,
     input wire div_ctrl, // 1 para fazer a divisao
     input wire [31:0] a,
     input wire [31:0] b,
-    output reg [31:0] Hi,
-    output reg [31:0] Lo,
-    output reg div_end,
+    output reg [31:0] quociente,
+    output reg [31:0] resto,
     output reg div_zero //excecao divisao por 0
 
 );
 
-    integer count_cycles = -1;
-    reg flag;
-    reg flagdiv;
-    reg [31:0] temp_a;
-    reg [31:0] temp_b;
-    reg [31:0] remainder;
-    reg [63:0] divisor;
-    reg [63:0] dividendo;
-    reg [63:0] diff;
-    reg [31:0] quociente;
+    reg [31:0] aux_a;
+    reg [31:0] aux_b;
+    reg [31:0] comp_b;
+    reg sinal_a;
+    reg sinal_b;
+    reg div_start;
+    reg div_end;
+    reg [31:0] aux_quociente;
+    reg [31:0] aux_resto;
+    reg [32:0] aux_diff;
+    integer counter_div;
 
-    always @(posedge clk) begin
-		div_zero = 1'b0;
-        if(reset == 1'b1) begin
-            flag = 1'b0;
-            flagdiv = 1'b0;
-            temp_a = 32'b0;
-            temp_b = 32'b0;
-            remainder = 32'b0;
-            divisor = 32'b0;
-            dividendo = 32'b0;
-            diff = 32'b0;
-            quociente = 32'b0;
-            Hi = 32'b0;
-            Lo = 32'b0;
-            div_end = 1'b0;
+
+    always @(posedge clk)begin
+
+        if(div_ctrl == 1'b0)begin
+
+            sinal_a = 1'b0; //indica o sinal de a -> 0 para pos e 1 para neg
+            sinal_b = 1'b0; // \\ \\ \\  \\ \\  b  \\ \\ \\  \\  \\  \\  \\    
+            div_start = 1'b0;
             div_zero = 1'b0;
-        end
-
-		if (div_ctrl == 1'b1) begin    
-            if ((a[31] && b[31]) || (~a[31] && ~b[31]))
-                flag = 1'b0;
-            else
-                flag = 1'b1;
-
-            if (!a[31])
-                flagdiv = 1'b0;
-            else
-                flagdiv = 1'b1;
-
-            if (a[31]) 
-                temp_a = (~a + 1'b1);
-            else 
-                temp_a = a;
-            if (b[31])
-                temp_b = (~b + 1'b1);
-            else
-                temp_b = b;
-			
-			div_end = 1'b0;
+            div_end = 1'b0;
+            aux_quociente = 32'b0;
+            aux_resto = 32'b0;
+            aux_diff = 33'b0;
+            counter_div = 31;
             quociente = 32'b0;
-            dividendo = {32'b0, temp_a};
-            divisor = {1'b0, temp_b, 31'b0};
-            
-            if (b == 32'b0)
-				div_zero = 1'b1;
-			else
-				count_cycles = 32;
+            resto = 32'b0;
+
         end
-        else begin
-            diff = dividendo - divisor;
+        if (div_ctrl == 1'b1)
+            begin
+                if (reset)
+                begin
+                    quociente = 32'b0;
+                    resto = 32'b0;
+                    div_zero = 1'b0;
+                    div_start = 1'b0;
+                    div_end = 1'b1;
+                    sinal_a = 1'b0;
+                    sinal_b = 1'b0;
+                    aux_quociente = 32'b0;
+                    aux_resto = 32'b0;
+                    aux_diff = 32'b0;
+                    counter_div = 0;
+                end
 
-            quociente = quociente << 1;
+                if (!div_end)
+                begin
+                    if (!div_start)
+                    begin
+                        
+                        if (b == 32'b0)
+                        begin
+                            div_zero = 1'b1;
+                            div_end = 1'b1;
+                        end
 
-            if (!diff[63]) begin
-                dividendo = diff;
-                quociente[0] = 1'b1;
-            end
+                        
+                        else
+                        begin 
+                            
+                            // tornando numerador positivo
+                            if (a[31])
+                            begin
+                                aux_a = (~a + 1'b1);
+                                sinal_a = 1'b1;
+                            end
+                            else
+                            begin
+                                aux_a = a; 
+                            end
 
-            divisor = divisor >> 1;
-            count_cycles = count_cycles - 1;
+                            // tornando o divisor positivo
+                            if (b[31])
+                            begin
+                                aux_b = (~b + 1'b1);
+                                sinal_b = 1'b1;
+                            end
+                            else
+                            begin
+                                aux_b = b; 
+                            end
+                        end
+                        div_start = 1'b1;
+                    end
 
-            if (count_cycles == 0) begin
-                if (flag)
-                    Lo = (~quociente + 1'b1);
-                else
-                    Lo = quociente;
-                
-                if (flagdiv)
-                    Hi = (~dividendo[31:0] + 1'b1);
-                else
-                    Hi = dividendo[31:0];
-                
-                div_end = 1'b1;
+                    if (div_start)
+                    begin
+                        aux_resto = aux_resto << 1; 
+                        aux_resto[0] = aux_a[counter_div];
 
-                remainder = 31'b0;
-                divisor = 64'b0;
-                dividendo = 64'b0;
-                quociente = 32'b0;
-                diff = 64'b0;
-                flag = 1'b0;
-                count_cycles = -1;
+                        comp_b = (~aux_b + 1'b1);
+                        aux_diff = aux_resto + comp_b; 
+
+                        if (aux_diff[32]) 
+                        begin
+                            aux_resto = aux_diff[31:0];
+                        end
+
+                        aux_quociente[counter_div] = aux_diff[32]; 
+
+                        counter_div = counter_div - 1;
+
+                        // gravando quociente 
+                        if (counter_div == -1)
+                        begin
+                            if (sinal_a ^ sinal_b) // se a e b têm sinais diferentes
+                            begin
+                                quociente = (~aux_quociente + 1'b1);
+                            end
+                            else
+                            begin
+                                quociente = aux_quociente;
+                            end
+
+                            if (sinal_a)
+                            begin
+                                resto = (~aux_resto + 1'b1);
+                            end
+                            else
+                            begin
+                                resto = aux_resto;
+                            end
+
+                            div_end = 1'b1;
+                        end
+                    end
+                end
             end
         end
-
-    end
 
 endmodule

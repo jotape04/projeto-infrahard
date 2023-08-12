@@ -94,7 +94,6 @@ module cpu_add(
     wire [31:0] DIV_B_in;
     wire [31:0] DivHi;
     wire [31:0] DivLo;
-    wire div_end;
     wire DIVQ;
 
     wire [31:0] Hi_in;
@@ -246,7 +245,6 @@ module cpu_add(
         DIV_B_in,
         DivHi,
         DivLo,
-        div_end,
         DIVQ
     );
 
