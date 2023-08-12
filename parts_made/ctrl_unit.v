@@ -3291,48 +3291,78 @@ module ctrl_unit(
                     else if (COUNTER == 6'd3) begin
                         case(STATE)
                         ST_SW, ST_SH, ST_SB: begin
-                            // LSCtrl; SSCtrl; close off MDR
-                                PCWrite= 1'b0;
-                                PCWriteCond= 1'b0;
-                                ExcptCtrl= 2'b00;
-                                IorD= 3'b010; // ALUOut => the address we saved
-                                SSCtrl= ssCtrl; // ler de SSCtrl
-                                mult_ctrl= 1'b0;
-                                DIVASelect= 1'b0;
-                                DIVBSelect= 1'b0;
-                                div_ctrl= 1'b0;
-                                MDSelect= 1'b0;
-                                MEM_write_or_read= 1'b1; // escrever na memória
-                                HiCtrl= 1'b0;
-                                LoCtrl= 1'b0;
-                                MDRCtrl= 1'b0; // done => fechar MDR pra não ter mudança
-                                IR_Write= 1'b0;
-                                LSCtrl= 2'b00; // x
-                                RegDst= 2'b00;
-                                RegWrite= 1'b0;
-                                AB_Write= 1'b0;
-                                ALUSrcA= 2'b00;
-                                ALUSrcB= 2'b00;
-                                ALUCtrl= 3'b000;
-                                ALUOutCtrl= 1'b0;
-                                EPCCtrl= 1'b0;
-                                PCSource= 3'b000;
-                                DataSrc= 4'b0000;
-                                ShiftSrc= 1'b0;
-                                ShiftAmt= 1'b0;
-                                ShiftCtrl= 3'b000;
-                                Branch_Ctrl= 2'b00;
+                            // SSCtrl; close off MDR; MemWrite
+                            PCWrite= 1'b0;
+                            PCWriteCond= 1'b0;
+                            ExcptCtrl= 2'b00;
+                            IorD= 3'b010; // ALUOut => the address we saved
+                            SSCtrl= ssCtrl; // ler de SSCtrl
+                            mult_ctrl= 1'b0;
+                            DIVASelect= 1'b0;
+                            DIVBSelect= 1'b0;
+                            div_ctrl= 1'b0;
+                            MDSelect= 1'b0;
+                            MEM_write_or_read= 1'b1; // escrever na memória
+                            HiCtrl= 1'b0;
+                            LoCtrl= 1'b0;
+                            MDRCtrl= 1'b0; // done => fechar MDR pra não ter mudança
+                            IR_Write= 1'b0;
+                            LSCtrl= 2'b00; // x
+                            RegDst= 2'b00;
+                            RegWrite= 1'b0;
+                            AB_Write= 1'b0;
+                            ALUSrcA= 2'b00;
+                            ALUSrcB= 2'b00;
+                            ALUCtrl= 3'b000;
+                            ALUOutCtrl= 1'b0;
+                            EPCCtrl= 1'b0;
+                            PCSource= 3'b000;
+                            DataSrc= 4'b0000;
+                            ShiftSrc= 1'b0;
+                            ShiftAmt= 1'b0;
+                            ShiftCtrl= 3'b000;
+                            Branch_Ctrl= 2'b00;
 
-                                reset_out = 1'b0;
+                            reset_out = 1'b0;
 
-                                COUNTER = 6'd0;
-                                STATE = ST_COMMON;
-                        end
-                        ST_LW, ST_LH, ST_LB: begin
                             COUNTER = 6'd0;
                             STATE = ST_COMMON;
                         end
-                        default: begin
+                        ST_LW, ST_LH, ST_LB: begin
+                            // lsCtrl; close off MDR; MemWrite
+                            PCWrite= 1'b0;
+                            PCWriteCond= 1'b0;
+                            ExcptCtrl= 2'b00;
+                            IorD= 3'b000;
+                            SSCtrl= 0'b00; // x
+                            mult_ctrl= 1'b0;
+                            DIVASelect= 1'b0;
+                            DIVBSelect= 1'b0;
+                            div_ctrl= 1'b0;
+                            MDSelect= 1'b0;
+                            MEM_write_or_read= 1'b0;
+                            HiCtrl= 1'b0;
+                            LoCtrl= 1'b0;
+                            MDRCtrl= 1'b0; // done => fechar MDR pra não ter mudança
+                            IR_Write= 1'b0;
+                            LSCtrl= lsCtrl; ///
+                            RegDst= 2'b00; // escrever em rt
+                            RegWrite= 1'b1;  // escrever
+                            AB_Write= 1'b0;
+                            ALUSrcA= 2'b00;
+                            ALUSrcB= 2'b00;
+                            ALUCtrl= 3'b000;
+                            ALUOutCtrl= 1'b0;
+                            EPCCtrl= 1'b0;
+                            PCSource= 3'b000;
+                            DataSrc= 4'b0001; // saída de ls
+                            ShiftSrc= 1'b0;
+                            ShiftAmt= 1'b0;
+                            ShiftCtrl= 3'b000;
+                            Branch_Ctrl= 2'b00;
+
+                            reset_out = 1'b0;
+
                             COUNTER = 6'd0;
                             STATE = ST_COMMON;
                         end
