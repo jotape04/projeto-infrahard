@@ -9,58 +9,58 @@ module mult(
 
 );
 
-    integer count_cycles = -1;
-    reg [64:0] add;
-    reg [64:0] sub;
-    reg [64:0] produto;
-    reg [31:0] complemento2;
+    reg [31:0] M; 
+    reg [31:0] Q;   
+    reg Q1;
+    reg [31:0] A;
+    reg [5:0] counter;
 
-    always @(posedge clk) begin
-        if(reset == 1'b1) begin
-            Hi = 32'b0;
-            Lo = 32'b0;
-            add = 65'b0;
-            sub = 65'b0;
-            produto = 65'b0;
-            complemento2 = 32'b0;
-            count_cycles = -1;
-        end
-        if(mult_ctrl == 1'b1) begin
-            add = {a, 33'b0};
-            complemento2 = (~a + 1'b1);
-            sub = {complemento2, 33'b0}; 
-            produto = {32'b0, b, 1'b0};
-            count_cycles = 32;
-        end
+    reg aux = 1;
+    
+    always @ (posedge clk)begin
 
-        if({produto[1], produto[0]} == 2'b01)
-        begin
-            produto = produto + add;
+        if(mult_ctrl == 1'b0)begin
+            counter = 6'b000000;
+            Q = 32'b00000000000000000000000000000000;
+            M = 32'b00000000000000000000000000000000;
+            Q1 = 1'b0;
+            A = 32'b00000000000000000000000000000000;
+
         end
-        else
-        begin
-            if ({produto[1], produto[0]} == 2'b10)
-            begin
-                produto = produto + sub;
+        else begin
+            if(counter == 6'b000000) begin
+                Q = a;
+                M = b;
+                counter = counter + 1;
+            end
+            else begin 
+                if(Q[0] == 1'b1 && Q1 == 1'b0) begin
+
+                    A = A - M;
+
+                end 
+
+                else if(Q[0] == 1'b0 && Q1 == 1'b1) begin
+
+                    A = A + M;
+
+                end 
+
+                {A, Q, Q1} = {A, Q, Q1} >> 1'b1;
+
+                if(A[30] == 1'b1)begin
+
+                    A[31] = 1'b1; 
+
+                end
+
+                counter = counter + 1'b1;
+            end
+
+            if(counter == 6'b100001) begin
+                Hi = A;
+                Lo = Q;
             end
         end
-
-        produto = produto >>> 1;
-        
-        if(count_cycles > 0) begin
-            count_cycles = (count_cycles - 1);
-        end
-
-        if(count_cycles == 0) begin
-            Hi = produto[64:33];
-            Lo = produto[32:1];
-
-            // reseting
-            add = 65'b0;
-            sub = 65'b0;
-            produto = 65'b0;
-            count_cycles = -1;
-        end
     end
-
 endmodule
