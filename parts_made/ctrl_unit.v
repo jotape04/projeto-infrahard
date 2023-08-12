@@ -28,6 +28,8 @@ module ctrl_unit(
     output reg MEM_write_or_read,
     output reg HiCtrl,
     output reg LoCtrl,
+    output reg DivQuotCtrl,
+    output reg DivRemCtrl,
     output reg MDRCtrl,
     output reg IR_Write,
     output reg [1:0] LSCtrl,
@@ -169,6 +171,8 @@ module ctrl_unit(
                 MEM_write_or_read= 1'b0;
                 HiCtrl= 1'b0;
                 LoCtrl= 1'b0;
+                DivQuotCtrl= 1'b0;
+                DivRemCtrl= 1'b0;
                 MDRCtrl= 1'b0;
                 IR_Write= 1'b0;
                 LSCtrl= 2'b00;
@@ -206,6 +210,8 @@ module ctrl_unit(
                 MEM_write_or_read= 1'b0;
                 HiCtrl= 1'b0;
                 LoCtrl= 1'b0;
+                DivQuotCtrl= 1'b0;
+                DivRemCtrl= 1'b0;
                 MDRCtrl= 1'b0;
                 IR_Write= 1'b0;
                 LSCtrl= 2'b00;
@@ -247,6 +253,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -285,6 +293,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;// ler da memória
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b1; //
                         LSCtrl= 2'b00;
@@ -323,6 +333,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -499,6 +511,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -538,6 +552,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -583,6 +599,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -629,6 +647,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -669,6 +689,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -718,6 +740,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -765,6 +789,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -805,6 +831,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -842,6 +870,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -877,6 +907,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -917,6 +949,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -956,6 +990,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -993,6 +1029,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -1028,6 +1066,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -1068,6 +1108,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -1113,6 +1155,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -1158,6 +1202,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -1196,6 +1242,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b1;
                         LoCtrl= 1'b1;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -1234,6 +1282,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -1275,6 +1325,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0; //nao armazena em hi
                         LoCtrl= 1'b0; //nao armazena em lo
+                        DivQuotCtrl= 1'b1;
+                        DivRemCtrl= 1'b1;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -1313,6 +1365,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0; //nao armazena
                         LoCtrl= 1'b0; //nao armazena
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -1356,6 +1410,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0; /// we're gonna read from the memory
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -1396,6 +1452,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0; /// we're gonna read from the memory
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -1430,6 +1488,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0; /// done
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0; // done
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -1473,6 +1533,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b1;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -1509,6 +1571,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -1551,6 +1615,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b1;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -1587,6 +1653,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -1628,6 +1696,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -1671,6 +1741,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -1711,6 +1783,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -1747,6 +1821,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -1785,6 +1861,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -1826,6 +1904,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -1863,6 +1943,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -1899,6 +1981,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -1936,6 +2020,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -1977,6 +2063,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -2014,6 +2102,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -2050,6 +2140,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -2087,6 +2179,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -2127,6 +2221,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -2163,6 +2259,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -2199,6 +2297,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -2236,6 +2336,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -2276,6 +2378,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -2313,6 +2417,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -2349,6 +2455,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -2386,6 +2494,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -2426,6 +2536,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -2462,6 +2574,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -2498,6 +2612,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -2535,6 +2651,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -2575,6 +2693,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -2612,6 +2732,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -2649,6 +2771,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -2689,6 +2813,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -2726,6 +2852,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -2763,6 +2891,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -2801,6 +2931,8 @@ module ctrl_unit(
                     MEM_write_or_read= 1'b0;
                     HiCtrl= 1'b0;
                     LoCtrl= 1'b0;
+                    DivQuotCtrl= 1'b0;
+                    DivRemCtrl= 1'b0;
                     MDRCtrl= 1'b0;
                     IR_Write= 1'b0;
                     LSCtrl= 2'b00;
@@ -2839,6 +2971,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -2873,6 +3007,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -2912,6 +3048,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -2948,6 +3086,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b1;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -2984,6 +3124,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b1;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -3020,6 +3162,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b1;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -3056,6 +3200,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b1;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -3097,6 +3243,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
@@ -3133,6 +3281,8 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0;
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
