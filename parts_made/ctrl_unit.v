@@ -91,8 +91,6 @@ module ctrl_unit(
     parameter ST_SW = 6'd28;
     parameter ST_SH = 6'd29;
     parameter ST_SB = 6'd30;
-    parameter ST_ADDM = 6'd31;
-    parameter ST_SLTI = 6'd32;
 
     parameter ST_EXCP_OPCODE_INEXISTS = 6'd34;
     parameter ST_EXCP_OVERFLOW = 6'd35;
@@ -1957,7 +1955,6 @@ module ctrl_unit(
                         STATE = ST_COMMON;
                         COUNTER = 6'b000000;
                     end
-                    
                 end
                 ST_SLL: begin
                     if(COUNTER == 6'b000000) begin
