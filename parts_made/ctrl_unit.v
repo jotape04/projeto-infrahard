@@ -130,6 +130,7 @@ module ctrl_unit(
 
     // aux elements
     reg [1:0] exceptionCtrl;
+    reg [1:0] branchCtrl;
     
 
     initial begin
@@ -194,8 +195,8 @@ module ctrl_unit(
                 MDRCtrl= 1'b0;
                 IR_Write= 1'b0;
                 LSCtrl= 2'b00;
-                RegDst= 2'b00;
-                RegWrite= 1'b0;
+                RegDst= 2'b10; // o registrador é o 29
+                RegWrite= 1'b1; // vamos escrever no registrador
                 AB_Write= 1'b0;
                 ALUSrcA= 2'b00;
                 ALUSrcB= 2'b00;
@@ -203,7 +204,7 @@ module ctrl_unit(
                 ALUOutCtrl= 1'b0;
                 EPCCtrl= 1'b0;
                 PCSource= 3'b000;
-                DataSrc= 4'b0000;
+                DataSrc= 4'b1000; // vamos escrever 227
                 ShiftSrc= 1'b0;
                 ShiftAmt= 1'b0;
                 ShiftCtrl= 3'b000;
@@ -363,6 +364,18 @@ module ctrl_unit(
                             end
                             ADDIU: begin
                                 STATE = ST_ADDIU;
+                            end
+                            BEQ: begin
+                                STATE = ST_BEQ;
+                            end
+                            BNE: begin
+                                STATE = ST_BNE;
+                            end
+                            BLE: begin
+                                STATE = ST_BLE;
+                            end
+                            BGT: begin
+                                STATE = ST_BGT;
                             end
                             RESET: begin
                                 STATE = ST_RESET;
@@ -1242,8 +1255,130 @@ module ctrl_unit(
                         STATE = ST_COMMON;
                         COUNTER = 6'b000000;
                     end
-                end         
+                end
+                ST_BEQ, ST_BNE, ST_BLE, ST_BGT: begin
+                    if (COUNTER == 6'd0) begin
+
+                        PCWrite= 1'b0;
+                        PCWriteCond= 1'b0;
+                        ExcptCtrl= 2'b00;
+                        IorD= 3'b000;
+                        SSCtrl= 2'b00;
+                        mult_ctrl= 1'b0;
+                        DIVASelect= 1'b0;
+                        DIVBSelect= 1'b0;
+                        div_ctrl= 1'b0;
+                        MDSelect= 1'b0;
+                        MEM_write_or_read= 1'b0;
+                        HiCtrl= 1'b0;
+                        LoCtrl= 1'b0;
+                        MDRCtrl= 1'b0;
+                        IR_Write= 1'b0;
+                        LSCtrl= 2'b00;
+                        RegDst= 2'b00;
+                        RegWrite= 1'b0;
+                        AB_Write= 1'b0;
+                        ALUSrcA= 2'b00; /// PC
+                        ALUSrcB= 2'b11; /// sign_extend_shift_left
+                        ALUCtrl= 3'b001; /// sum
+                        ALUOutCtrl= 1'b1; /// write in ALUOut
+                        EPCCtrl= 1'b0;
+                        PCSource= 3'b000;
+                        DataSrc= 4'b0000;
+                        ShiftSrc= 1'b0;
+                        ShiftAmt= 1'b0;
+                        ShiftCtrl= 3'b000;
+                        Branch_Ctrl= 2'b00;
+
+                        reset_out = 1'b0;
+
+                        COUNTER = COUNTER +1;
+                    end
+                    else if (COUNTER == 6'd1) begin
+                        case (STATE)
+                        ST_BEQ: branchCtrl = 2'b00;
+                        ST_BNE: branchCtrl = 2'b01;
+                        ST_BLE: branchCtrl = 2'b10;
+                        ST_BGT: branchCtrl = 2'b11;
+                        endcase
+
+                        PCWrite= 1'b0;
+                        PCWriteCond= 1'b1; /// we're gonna write based on the conditional
+                        ExcptCtrl= 2'b00;
+                        IorD= 3'b000;
+                        SSCtrl= 2'b00;
+                        mult_ctrl= 1'b0;
+                        DIVASelect= 1'b0;
+                        DIVBSelect= 1'b0;
+                        div_ctrl= 1'b0;
+                        MDSelect= 1'b0;
+                        MEM_write_or_read= 1'b0;
+                        HiCtrl= 1'b0;
+                        LoCtrl= 1'b0;
+                        MDRCtrl= 1'b0;
+                        IR_Write= 1'b0;
+                        LSCtrl= 2'b00;
+                        RegDst= 2'b00;
+                        RegWrite= 1'b0;
+                        AB_Write= 1'b0;
+                        ALUSrcA= 2'b01; /// reg A
+                        ALUSrcB= 2'b00; /// reg B
+                        ALUCtrl= 3'b111; /// comparison
+                        ALUOutCtrl= 1'b0; /// done
+                        EPCCtrl= 1'b0;
+                        PCSource= 3'b001; /// ALUOut = the address we just calculated
+                        DataSrc= 4'b0000;
+                        ShiftSrc= 1'b0;
+                        ShiftAmt= 1'b0;
+                        ShiftCtrl= 3'b000;
+                        Branch_Ctrl= branchCtrl;
+
+                        reset_out = 1'b0;
+
+                        COUNTER = 6'd0;
+                        STATE = ST_COMMON;
+                    end
+                end     
 	   endcase
         end      
     end
 endmodule
+
+// if (COUNTER == 6'd0) begin
+//     STATE = YOUR_STATE;
+
+//     PCWrite= 1'b0;
+//     PCWriteCond= 1'b0;
+//     ExcptCtrl= 2'b00;
+//     IorD= 3'b000;
+//     SSCtrl= 2'b00;
+//     mult_ctrl= 1'b0;
+//     DIVASelect= 1'b0;
+//     DIVBSelect= 1'b0;
+//     div_ctrl= 1'b0;
+//     MDSelect= 1'b0;
+//     MEM_write_or_read= 1'b0;
+//     HiCtrl= 1'b0;
+//     LoCtrl= 1'b0;
+//     MDRCtrl= 1'b0;
+//     IR_Write= 1'b0;
+//     LSCtrl= 2'b00;
+//     RegDst= 2'b00;
+//     RegWrite= 1'b0;
+//     AB_Write= 1'b0;
+//     ALUSrcA= 2'b00;
+//     ALUSrcB= 2'b00;
+//     ALUCtrl= 3'b000;
+//     ALUOutCtrl= 1'b0;
+//     EPCCtrl= 1'b0;
+//     PCSource= 3'b000;
+//     DataSrc= 4'b0000;
+//     ShiftSrc= 1'b0;
+//     ShiftAmt= 1'b0;
+//     ShiftCtrl= 3'b000;
+//     Branch_Ctrl= 2'b00;
+
+//     reset_out = 1'b0;
+
+//     COUNTER = COUNTER +1;
+// end
