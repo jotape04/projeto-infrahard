@@ -448,4 +448,9 @@ module cpu_add(
         SignExtendShiftLeft
     );
 
+    shift_left_16 shift_left_16(
+        OFFSET,
+        Shift_left
+    );
+
 endmodule
