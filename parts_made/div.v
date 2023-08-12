@@ -6,7 +6,7 @@ module div(
     input wire [31:0] b,
     output reg [31:0] quociente,
     output reg [31:0] resto,
-    output reg div_zero //excecao divisao por 0
+    output reg DIVQ //excecao divisao por 0
 
 );
 
@@ -30,7 +30,7 @@ module div(
             sinal_a = 1'b0; //indica o sinal de a -> 0 para pos e 1 para neg
             sinal_b = 1'b0; // \\ \\ \\  \\ \\  b  \\ \\ \\  \\  \\  \\  \\    
             div_start = 1'b0;
-            div_zero = 1'b0;
+            DIVQ = 1'b0;
             div_end = 1'b0;
             aux_quociente = 32'b0;
             aux_resto = 32'b0;
@@ -46,7 +46,7 @@ module div(
                 begin
                     quociente = 32'b0;
                     resto = 32'b0;
-                    div_zero = 1'b0;
+                    DIVQ = 1'b0;
                     div_start = 1'b0;
                     div_end = 1'b1;
                     sinal_a = 1'b0;
@@ -64,7 +64,7 @@ module div(
                         
                         if (b == 32'b0)
                         begin
-                            div_zero = 1'b1;
+                            DIVQ = 1'b1;
                             div_end = 1'b1;
                         end
 
