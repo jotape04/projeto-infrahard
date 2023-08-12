@@ -384,6 +384,7 @@ module cpu_add(
         Ng,
         Zr,
         Ofw,
+        DIVQ,
         OPCODE,
         Funct,
         PCWrite,

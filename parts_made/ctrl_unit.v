@@ -9,6 +9,7 @@ module ctrl_unit(
     input wire Ng,
     input wire Zr,
     input wire Ofw,
+    input reg DIVQ, // divisao por 0
 
     // Opcode
     input wire [5:0] OPCODE,
@@ -47,6 +48,7 @@ module ctrl_unit(
     output reg ShiftAmt,
     output reg [2:0] ShiftCtrl,
     output reg [1:0] Branch_Ctrl,
+    
 
     // reset controller
     output reg reset_out
@@ -1387,6 +1389,19 @@ module ctrl_unit(
 
                         reset_out = 1'b0;
                         COUNTER = COUNTER + 1;
+
+                        if(DIVQ)begin
+                            div_ctrl= 1'b0;
+                            RegDst= 2'b00; ///
+                            RegWrite= 1'b0; ///
+                            ALUSrcA= 2'b00; ///
+                            ALUCtrl= 3'b000; ///
+                            ALUSrcB= 2'b00;
+                            ALUOutCtrl= 1'b0;
+
+                            STATE = ST_EXCP_DIVZERO;
+                            COUNTER = 6'b000000; 
+                        end
                     end
                 end    
                 ST_EXCP_OPCODE_INEXISTS, ST_EXCP_OVERFLOW, ST_EXCP_DIVZERO: begin
