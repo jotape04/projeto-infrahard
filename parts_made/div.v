@@ -1,4 +1,4 @@
-module div(Lo
+module div(
     input wire clk,
     input wire reset,
     input wire div_ctrl, // 1 para fazer a divisao
