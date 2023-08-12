@@ -419,6 +419,9 @@ module ctrl_unit(
                                 RTE: begin
                                     STATE = ST_RTE;
                                 end
+                                BREAK:begin
+                                    STATE = ST_BREAK;
+                                end
                                 
                             endcase
 
