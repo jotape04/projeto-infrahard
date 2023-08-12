@@ -361,9 +361,9 @@ module ctrl_unit(
                                   
                                 endcase
                             end
-                            ADDI: begin
-                                STATE = ST_ADDI;
-                            end
+                            // ADDI: begin
+                            //     STATE = ST_ADDI;
+                            // end
                             RESET: begin
                                 STATE = ST_RESET;
                             end
@@ -1131,7 +1131,7 @@ module ctrl_unit(
                     end
                 end    
                 ST_EXCP_OPCODE_INEXISTS, ST_EXCP_OVERFLOW, ST_EXCP_DIVZERO: begin
-                    if (COUNTER == 6'b000) begin
+                    if (COUNTER == 6'd0) begin
                         case (STATE)
                         ST_EXCP_OPCODE_INEXISTS: exceptionCtrl = 2'b00;
                         ST_EXCP_OVERFLOW: exceptionCtrl = 2'b01;
@@ -1151,7 +1151,7 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0; /// we're gonna read from the memory
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
-                        MDRCtrl= 1'b0;
+                        MDRCtrl= 1'b1; // write from the memory
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
                         RegDst= 2'b00;
@@ -1168,8 +1168,10 @@ module ctrl_unit(
                         ShiftAmt= 1'b0;
                         ShiftCtrl= 3'b000;
                         Branch_Ctrl= 2'b00;
+
+                        COUNTER = COUNTER +1;
                     end
-                    if (COUNTER == 6'b001 || COUNTER == 6'b001) begin
+                    else if (COUNTER == 6'd1 || COUNTER == 6'd2) begin
                         case (STATE)
                         ST_EXCP_OPCODE_INEXISTS: exceptionCtrl = 2'b00;
                         ST_EXCP_OVERFLOW: exceptionCtrl = 2'b01;
@@ -1189,7 +1191,7 @@ module ctrl_unit(
                         MEM_write_or_read= 1'b0; /// we're gonna read from the memory
                         HiCtrl= 1'b0;
                         LoCtrl= 1'b0;
-                        MDRCtrl= 1'b0;
+                        MDRCtrl= 1'b1; // write from the memory
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
                         RegDst= 2'b00;
@@ -1206,10 +1208,48 @@ module ctrl_unit(
                         ShiftAmt= 1'b0;
                         ShiftCtrl= 3'b000;
                         Branch_Ctrl= 2'b00;
+
+                        COUNTER = COUNTER +1;
+                    end
+                    else if (COUNTER == 6'd3) begin
+                        PCWrite= 1'b1; /// write what's in MDR in PC
+                        PCWriteCond= 1'b0;
+                        ExcptCtrl= 1'b0; /// done
+                        IorD= 3'b000; /// done
+                        SSCtrl= 2'b00;
+                        mult_ctrl= 1'b0;
+                        DIVASelect= 1'b0;
+                        DIVBSelect= 1'b0;
+                        div_ctrl= 1'b0;
+                        MDSelect= 1'b0;
+                        MEM_write_or_read= 1'b0; /// done
+                        HiCtrl= 1'b0;
+                        LoCtrl= 1'b0;
+                        MDRCtrl= 1'b0; // done
+                        IR_Write= 1'b0;
+                        LSCtrl= 2'b00;
+                        RegDst= 2'b00;
+                        RegWrite= 1'b0;
+                        AB_Write= 1'b0;
+                        ALUSrcA= 2'b00; /// done
+                        ALUSrcB= 2'b00; /// done
+                        ALUCtrl= 3'b000; /// done
+                        ALUOutCtrl= 1'b0;
+                        EPCCtrl= 1'b0; /// done
+                        PCSource= 3'b011; /// write what's in MDR in PC
+                        DataSrc= 4'b0000;
+                        ShiftSrc= 1'b0;
+                        ShiftAmt= 1'b0;
+                        ShiftCtrl= 3'b000;
+                        Branch_Ctrl= 2'b00;
+
+                        COUNTER = COUNTER + 1;
                     end
                     
-                    STATE = ST_COMMON;
-                    COUNTER = 6'b000000;
+                    else if (COUNTER == 6'd4) begin
+                        STATE = ST_COMMON;
+                        COUNTER = 6'b000000;
+                    end
                 end
                 ST_MFHI: begin
                     if(COUNTER == 6'b000000) begin
@@ -1286,7 +1326,7 @@ module ctrl_unit(
                             STATE = ST_COMMON;
                             COUNTER = 6'b000000;
 
-                        end
+                         end
                 end
                 ST_MFLO: begin
             
@@ -1625,7 +1665,7 @@ module ctrl_unit(
                         DataSrc= 4'b0000;
                         ShiftSrc= 1'b1;
                         ShiftAmt= 1'b1;
-                        ShiftCtrl= 3'100;
+                        ShiftCtrl= 3'b100;
                         Branch_Ctrl= 2'b00;
 
                         reset_out = 1'b0;
