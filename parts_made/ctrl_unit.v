@@ -651,22 +651,6 @@ module ctrl_unit(
                         ShiftCtrl= 3'b000;
                         Branch_Ctrl= 2'b00;
 
-                        PCWrite = 1'b0;
-                        PCWriteCond = 1'b0;
-                        Branch_Ctrl = 2'b00;
-                        MEM_write_or_read = 1'b0;
-                        IR_Write = 1'b0;
-                        RegWrite = 1'b0; ///
-                        AB_Write = 1'b0;
-                        ALUCtrl = 3'b001; ///
-                        ALUOutCtrl = 1'b0;
-                        RegDst = 2'b01; ///
-                        ALUSrcA = 2'b01; ///
-                        ALUSrcB = 2'b00; ///
-                        PCSource = 3'b000;
-                        IorD = 3'b000;
-                        DataSrc = 4'b0000; ///
-
                         reset_out = 1'b0;
                         STATE = ST_COMMON;
                         COUNTER = 6'b000000;
@@ -1186,7 +1170,7 @@ module ctrl_unit(
                         AB_Write= 1'b0;
                         ALUSrcA= 2'b01; ///
                         ALUSrcB= 2'b00;
-                        ALUCtrl= 3'b001;
+                        ALUCtrl= 3'b010;
                         ALUOutCtrl= 1'b0;
                         EPCCtrl= 1'b0;
                         PCSource= 3'b000;
@@ -1196,7 +1180,6 @@ module ctrl_unit(
                         ShiftCtrl= 3'b000;
                         Branch_Ctrl= 2'b00;
                  
-
                         reset_out = 1'b0;
                         STATE = ST_COMMON;
                         COUNTER = 6'b000000;
