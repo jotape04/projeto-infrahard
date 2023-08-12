@@ -93,9 +93,6 @@ module ctrl_unit(
     parameter ST_SB = 6'd30;
     parameter ST_ADDM = 6'd31;
     parameter ST_SLTI = 6'd32;
-    parameter ST_J = 6'b010001;
-    parameter ST_JAL = 6'd37;
-
 
     parameter ST_EXCP_OPCODE_INEXISTS = 6'd34;
     parameter ST_EXCP_OVERFLOW = 6'd35;
@@ -148,6 +145,8 @@ module ctrl_unit(
     // aux elements
     reg [1:0] exceptionCtrl;
     reg [1:0] branchCtrl;
+    reg [1:0] lsCtrl;
+    reg [1:0] ssCtrl;
     
 
     initial begin
@@ -485,7 +484,6 @@ module ctrl_unit(
                             end
 
                             default: begin
-                                $display("We're going to the opcode inexists");
                                 STATE = ST_EXCP_OPCODE_INEXISTS;
                             end
                         endcase
@@ -1961,8 +1959,6 @@ module ctrl_unit(
                     end
                     
                 end
-
-
                 ST_SLL: begin
                     if(COUNTER == 6'b000000) begin
                         STATE = ST_SLL;
@@ -2113,8 +2109,6 @@ module ctrl_unit(
                         COUNTER = 6'b000000;
                     end
                 end
-
-
                 ST_SRA: begin
                     if(COUNTER == 6'b000000) begin
                         STATE = ST_SRA;
@@ -2263,8 +2257,7 @@ module ctrl_unit(
                         STATE = ST_COMMON;
                         COUNTER = 6'b000000;
                     end
-                end
-                
+                end              
                 ST_SLLV: begin
                     if(COUNTER == 6'b000000) begin
                         STATE = ST_SLLV;
@@ -2415,7 +2408,6 @@ module ctrl_unit(
                         COUNTER = 6'b000000;
                     end
                 end
-
                 ST_SRAV: begin
                     if(COUNTER == 6'b000000) begin
                         STATE = ST_SRAV;
@@ -2565,7 +2557,6 @@ module ctrl_unit(
                         COUNTER = 6'b000000;
                     end
                 end
-
                 ST_SLT: begin
                     if(COUNTER == 6'b000000)begin
                         STATE = ST_SLT;
@@ -2792,8 +2783,7 @@ module ctrl_unit(
                         reset_out = 1'b0;
                         STATE = ST_COMMON;
                         COUNTER = 6'b000000;
-                    end
-                    
+                    end  
                 end
                 ST_RTE: begin
                     STATE = ST_RTE;
@@ -2831,8 +2821,7 @@ module ctrl_unit(
                     reset_out = 1'b0;
                     STATE = ST_COMMON;
                     COUNTER = 6'b000000;
-                end
-                
+                end 
                 ST_LUI: begin
                    if(COUNTER == 6'b000000) begin
                        STATE = ST_LUI;
@@ -2906,7 +2895,6 @@ module ctrl_unit(
                         COUNTER = 6'b000000;
                    end  
                 end
-
                 ST_ADDM: begin
                     if(COUNTER == 6'b000000) begin
                         STATE = ST_ADDM;
@@ -3085,118 +3073,6 @@ module ctrl_unit(
                         ShiftCtrl= 3'b000;
                         Branch_Ctrl= 2'b00;
 
-
-                        reset_out = 1'b0;
-                        STATE = ST_COMMON;
-                        COUNTER = 6'b000000;
-                    end
-                end
-
-                ST_LW: begin
-                    if(COUNTER == 6'b000000) begin
-                        STATE = ST_LW;
-                        PCWrite= 1'b0;
-                        PCWriteCond= 1'b0;
-                        ExcptCtrl= 2'b00;
-                        IorD= 3'b000;
-                        SSCtrl= 2'b00;
-                        mult_ctrl= 1'b0;
-                        DIVASelect= 1'b0;
-                        DIVBSelect= 1'b0;
-                        div_ctrl= 1'b0;
-                        MDSelect= 1'b0;
-                        MEM_write_or_read= 1'b0;
-                        HiCtrl= 1'b0;
-                        LoCtrl= 1'b0;
-                        MDRCtrl= 1'b0;
-                        IR_Write= 1'b0;
-                        LSCtrl= 2'b00;
-                        RegDst= 2'b00;
-                        RegWrite= 1'b0;
-                        AB_Write= 1'b0;
-                        ALUSrcA= 2'b01;
-                        ALUSrcB= 2'b10;
-                        ALUCtrl= 3'b001;
-                        ALUOutCtrl= 1'b0;
-                        EPCCtrl= 1'b0;
-                        PCSource= 3'b000;
-                        DataSrc= 4'b0000;
-                        ShiftSrc= 1'b0;
-                        ShiftAmt= 1'b0;
-                        ShiftCtrl= 3'b000;
-                        Branch_Ctrl= 2'b00;
-
-                        reset_out = 1'b0;
-                        COUNTER = COUNTER + 1;
-                    end
-                    else if(COUNTER == 6'b000001 | COUNTER == 6'b000010) begin
-                        STATE = ST_LW;
-                        PCWrite= 1'b0;
-                        PCWriteCond= 1'b0;
-                        ExcptCtrl= 2'b00;
-                        IorD= 3'b010;
-                        SSCtrl= 2'b00;
-                        mult_ctrl= 1'b0;
-                        DIVASelect= 1'b0;
-                        DIVBSelect= 1'b0;
-                        div_ctrl= 1'b0;
-                        MDSelect= 1'b0;
-                        MEM_write_or_read= 1'b1;
-                        HiCtrl= 1'b0;
-                        LoCtrl= 1'b0;
-                        MDRCtrl= 1'b0;
-                        IR_Write= 1'b0;
-                        LSCtrl= 2'b00;
-                        RegDst= 2'b00;
-                        RegWrite= 1'b0;
-                        AB_Write= 1'b0;
-                        ALUSrcA= 2'b00;
-                        ALUSrcB= 2'b00;
-                        ALUCtrl= 3'b000;
-                        ALUOutCtrl= 1'b0;
-                        EPCCtrl= 1'b0;
-                        PCSource= 3'b000;
-                        DataSrc= 4'b0000;
-                        ShiftSrc= 1'b0;
-                        ShiftAmt= 1'b0;
-                        ShiftCtrl= 3'b000;
-                        Branch_Ctrl= 2'b00;
-
-                        reset_out = 1'b0;
-                        COUNTER = COUNTER + 1;
-                    end
-                    else if(COUNTER == 6'b000011) begin
-                        STATE = ST_LW;
-                        PCWrite= 1'b0;
-                        PCWriteCond= 1'b0;
-                        ExcptCtrl= 2'b00;
-                        IorD= 3'b000;
-                        SSCtrl= 2'b00;
-                        mult_ctrl= 1'b0;
-                        DIVASelect= 1'b0;
-                        DIVBSelect= 1'b0;
-                        div_ctrl= 1'b0;
-                        MDSelect= 1'b0;
-                        MEM_write_or_read= 1'b0;
-                        HiCtrl= 1'b0;
-                        LoCtrl= 1'b0;
-                        MDRCtrl= 1'b0;
-                        IR_Write= 1'b0;
-                        LSCtrl= 2'b00;
-                        RegDst= 2'b00;
-                        RegWrite= 1'b1;
-                        AB_Write= 1'b0;
-                        ALUSrcA= 2'b00;
-                        ALUSrcB= 2'b00;
-                        ALUCtrl= 3'b000;
-                        ALUOutCtrl= 1'b0;
-                        EPCCtrl= 1'b0;
-                        PCSource= 3'b000;
-                        DataSrc= 4'b0001;
-                        ShiftSrc= 1'b0;
-                        ShiftAmt= 1'b0;
-                        ShiftCtrl= 3'b000;
-                        Branch_Ctrl= 2'b00;
 
                         reset_out = 1'b0;
                         STATE = ST_COMMON;

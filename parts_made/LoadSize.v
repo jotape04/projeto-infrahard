@@ -1,12 +1,16 @@
 module LoadSize(
     input  wire [1:0] LoadSize_Ctrl,
     input  wire [31:0] data_in,
-    output wire [31:0] write_data 
+    output reg [31:0] write_data // Mudança para 'reg' aqui
 );
-	
-    wire [31:0] half_quarter; 
 
-    assign half_quarter = (LoadSize_Ctrl[0]) ? {16'd0, data_in[15:0]} : {24'd0, data_in[7:0]}; //escreve metade ou o primeiro quarto e preenche os outros bits com 0
-    assign write_data = (LoadSize_Ctrl[1]) ? data_in : half_quarter; //sobrescreve tudo ou nao
+    always @(*) begin
+        case(LoadSize_Ctrl)
+            2'b00: write_data = data_in; // lw
+            2'b01: write_data = {16'd0, data_in[15:0]}; // lh
+            2'b10: write_data = {24'd0, data_in[7:0]}; // lb
+            default: write_data = 32'd0; // Valor padrão para casos não especificados
+        endcase
+    end
 
 endmodule
