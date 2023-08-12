@@ -3713,7 +3713,6 @@ module ctrl_unit(
                         endcase
                     end
                 end
->>>>>>> 2797af2d240e384d38667e34dfe8828e99a5b278
 	        endcase
         end      
     end
