@@ -907,7 +907,7 @@ module ctrl_unit(
                         COUNTER = COUNTER + 1;
                     end
                     else if (COUNTER == 6'd1) begin
-                        STATE = ST_SUB;
+                        STATE = ST_AND;
 
                         PCWrite= 1'b0;
                         PCWriteCond= 1'b0;
