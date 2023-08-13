@@ -4,8 +4,9 @@ module div(
     input wire div_ctrl, // 1 para fazer a divisao
     input wire [31:0] a,
     input wire [31:0] b,
-    output reg [31:0] quociente,
     output reg [31:0] resto,
+    output reg [31:0] quociente,
+    
     output reg DIVQ //excecao divisao por 0
 
 );

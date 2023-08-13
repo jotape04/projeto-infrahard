@@ -1326,10 +1326,10 @@ module ctrl_unit(
                         div_ctrl= 1'b1;   // ativado
                         MDSelect= 1'b0;
                         MEM_write_or_read= 1'b0;
-                        HiCtrl= 1'b0; //nao armazena em hi
-                        LoCtrl= 1'b0; //nao armazena em lo
-                        DivQuotCtrl= 1'b1;
-                        DivRemCtrl= 1'b1;
+                        HiCtrl= 1'b1; //
+                        LoCtrl= 1'b1; //
+                        DivQuotCtrl= 1'b0;
+                        DivRemCtrl= 1'b0;
                         MDRCtrl= 1'b0;
                         IR_Write= 1'b0;
                         LSCtrl= 2'b00;
