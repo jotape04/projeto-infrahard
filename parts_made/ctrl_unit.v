@@ -2932,7 +2932,7 @@ module ctrl_unit(
                 end 
                 ST_LUI: begin
                    if(COUNTER == 6'b000000) begin
-                       STATE = ST_LUI;
+                        STATE = ST_LUI;
                         PCWrite= 1'b0;
                         PCWriteCond= 1'b0;
                         ExcptCtrl= 2'b00;
@@ -2960,11 +2960,15 @@ module ctrl_unit(
                         ALUOutCtrl= 1'b0;
                         EPCCtrl= 1'b0;
                         PCSource= 3'b000;
-                        DataSrc= 4'b0110;
+                        DataSrc= 4'b0101;
                         ShiftSrc= 1'b0;
                         ShiftAmt= 1'b0;
                         ShiftCtrl= 3'b000;
                         Branch_Ctrl= 2'b00;
+
+                        reset_out = 1'b0;
+
+                        COUNTER = COUNTER + 1; 
                     
                    end
                    else if(COUNTER == 6'b000001) begin
@@ -2996,7 +3000,7 @@ module ctrl_unit(
                         ALUOutCtrl= 1'b0;
                         EPCCtrl= 1'b0;
                         PCSource= 3'b000;
-                        DataSrc= 4'b0110;
+                        DataSrc= 4'b0101;
                         ShiftSrc= 1'b0;
                         ShiftAmt= 1'b0;
                         ShiftCtrl= 3'b000;
