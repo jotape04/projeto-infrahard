@@ -25,6 +25,8 @@ module cpu_add(
     wire MEM_write_or_read;
     wire HiCtrl;
     wire LoCtrl;
+    wire DivQuotCtrl;
+    wire DivRemCtrl;
     wire MDRCtrl;
     wire IR_Write;
     wire [1:0] LSCtrl;
@@ -94,8 +96,10 @@ module cpu_add(
     wire [31:0] DIV_B_in;
     wire [31:0] DivHi;
     wire [31:0] DivLo;
-    wire div_end;
     wire DIVQ;
+
+    wire [31:0] DivQuot_out;
+    wire [31:0] DivRem_out;
 
     wire [31:0] Hi_in;
     wire [31:0] Hi_out;
@@ -246,8 +250,23 @@ module cpu_add(
         DIV_B_in,
         DivHi,
         DivLo,
-        div_end,
         DIVQ
+    );
+
+    Registrador DivQuot_(
+        clk,
+        reset,
+        DivQuotCtrl,
+        DivHi,
+        DivQuot_out
+    );
+
+    Registrador DivRem_(
+        clk,
+        reset,
+        DivRemCtrl,
+        DivLo,
+        DivRem_out
     );
 
     Memoria MEM_(
@@ -365,6 +384,7 @@ module cpu_add(
         Ng,
         Zr,
         Ofw,
+        DIVQ,
         OPCODE,
         Funct,
         PCWrite,
@@ -380,6 +400,8 @@ module cpu_add(
         MEM_write_or_read,
         HiCtrl,
         LoCtrl,
+        DivQuotCtrl,
+        DivRemCtrl,
         MDRCtrl,
         IR_Write,
         LSCtrl,
@@ -446,6 +468,11 @@ module cpu_add(
     shift_left_2 shift_left_2(
         SignExtend16to32,
         SignExtendShiftLeft
+    );
+
+    shift_left_16 shift_left_16(
+        OFFSET,
+        Shift_left
     );
 
 endmodule
