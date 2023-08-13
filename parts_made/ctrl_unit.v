@@ -483,10 +483,6 @@ module ctrl_unit(
                                 STATE = ST_SLTI;
                             end
 
-                            RESET: begin
-                                STATE = ST_RESET;
-                            end
-
                             J: begin
                                 STATE = ST_J;
                             end
