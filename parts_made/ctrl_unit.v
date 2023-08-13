@@ -2174,12 +2174,9 @@ module ctrl_unit(
                         Branch_Ctrl= 2'b00;
 
                         reset_out = 1'b0;
+                        
                         STATE = ST_COMMON;
-<<<<<<< HEAD
                         COUNTER = 6'b000000;
-=======
-                        COUNTER = 6'd0;
->>>>>>> cea41224ddd6b3276ad0a5dfce70656e01f67e86
 
                     end
                 end
